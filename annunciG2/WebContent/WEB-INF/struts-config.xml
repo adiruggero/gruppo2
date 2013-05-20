@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configurator 1.3//EN"
+							   "struts-config_1_3.dtd">
+
+							   
+<struts-config>
+	
+	<form-beans>
+		<form-bean 	id="annunciForm"
+					type="it.geek.annunci.form.AnnunciForm"/>
+
+	</form-beans>
+
+	<global-exceptions></global-exceptions>
+	
+	<global-forwards></global-forwards>
+	
+	<action-mappings>
+	
+		<action path="/gestioneAnnunci"
+				name="annunciForm"
+				parameter="method"
+				scope="request"
+				type="it.geek.annunci.controller.GestioneAnnunciAction"
+			
+				<forward name="search" path="/search.jsp"/>
+	</action>
+		
+	</action-mappings>
+
+	<message-resources parameter="it.geek.ApplicationResources"></message-resources>
+
+</struts-config>
