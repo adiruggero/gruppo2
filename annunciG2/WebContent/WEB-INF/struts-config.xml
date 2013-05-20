@@ -7,7 +7,7 @@
 <struts-config>
 	
 	<form-beans>
-		<form-bean 	id="annunciForm"
+		<form-bean 	name="annunciForm"
 					type="it.geek.annunci.form.AnnunciForm"/>
 
 	</form-beans>
@@ -22,7 +22,7 @@
 				name="annunciForm"
 				parameter="method"
 				scope="request"
-				type="it.geek.annunci.controller.GestioneAnnunciAction"
+				type="it.geek.annunci.controller.GestioneAnnunciAction">
 			
 				<forward name="search" path="/search.jsp"/>
 	</action>

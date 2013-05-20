@@ -2,10 +2,10 @@
 
 <center>
 		
-		<html:form styleId="ricercaForm" method="POST" action="gestioneAnnunci.do">
+		<html:form method="POST" action="gestioneAnnunci.do">
 		
-			<td><html:select name="ricercaForm" property="categoria.codiceCategoria">
-						<html:optionsCollection name="ricercaForm" property="listCategoria" />
+			<td><html:select name="annunciForm" property="categoria.codiceCategoria">
+						<html:optionsCollection name="annunciForm" property="listCategoria" />
 					</html:select></td>
 		
 		</html:form>
