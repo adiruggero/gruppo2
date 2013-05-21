@@ -1,9 +1,8 @@
 package it.geek.annunci.form;
 
 import org.apache.struts.action.ActionForm;
+import it.geek.annunci.factory.ServiceFactory;
 import it.geek.annunci.model.Categoria;
-import it.geek.annunci.util.Collezioni;
-
 import java.util.List;
 import org.apache.struts.util.LabelValueBean;
 
@@ -14,9 +13,18 @@ public class AnnunciForm extends ActionForm{
 	private String descrizione;
 	private boolean stato;
 	private Categoria categoria = new Categoria();
+	private String method;
 	
 	
 	
+	
+	
+	public String getMethod() {
+		return method;
+	}
+	public void setMethod(String method) {
+		this.method = method;
+	}
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -24,7 +32,7 @@ public class AnnunciForm extends ActionForm{
 		this.categoria = categoria;
 	}
 	public List<LabelValueBean> getListCategoria() {
-		listCategoria = Collezioni.getOptions("categoria");
+		listCategoria = ServiceFactory.getCollezioniService().getCollezioni("categoria");
 		return listCategoria;
 	}
 	public void setListCategoria(List<LabelValueBean> listCategoria) {

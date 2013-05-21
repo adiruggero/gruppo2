@@ -9,12 +9,29 @@
 	http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
+<bean id="collezioniSpring" class="it.geek.annunci.util.Collezioni">
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate"></ref>
+		</property>
+</bean>
+
+<bean id="annuncioSpring" class="it.geek.annunci.dao.AnnuncioDao">
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate"></ref>
+		</property>
+
+</bean>
 
 
+<bean id="sannunci" class="it.geek.annunci.service.AnnuncioService">
+		<property name="annuncioDao">
+			<ref bean="annuncioSpring"></ref>
+		</property>
+</bean>
 
-<bean id="sregione" class="it.geek.residenzaSpring.service.RegioneServiceSpring">
-		<property name="regioneDAO">
-			<ref bean="rdaospring"></ref>
+<bean id="scollezioni" class="it.geek.annunci.service.CollezioniService">
+		<property name="collezioni">
+			<ref bean="collezioniSpring"></ref>
 		</property>
 </bean>
 
