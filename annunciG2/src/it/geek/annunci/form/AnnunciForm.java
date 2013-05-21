@@ -10,6 +10,7 @@ public class AnnunciForm extends ActionForm{
 	
 	
 	private List<LabelValueBean> listCategoria;
+	private String dataInserimento;
 	private String descrizione;
 	private boolean stato;
 	private Categoria categoria = new Categoria();
@@ -18,6 +19,14 @@ public class AnnunciForm extends ActionForm{
 	
 	
 	
+	
+	
+	public String getDataInserimento() {
+		return dataInserimento;
+	}
+	public void setDataInserimento(String dataInserimento) {
+		this.dataInserimento = dataInserimento;
+	}
 	public boolean isStato() {
 		return stato;
 	}

@@ -21,6 +21,11 @@ public class AnnuncioRowMapper implements RowMapper<Annuncio> {
 		
 		a.setCodiceAnnuncio(rs.getInt("codice_annuncio"));
 		a.setDescrizione(rs.getString("descrizione"));
+		java.sql.Date dataSql = rs.getDate("data_inserimento");
+		if(dataSql!=null){
+			java.util.Date dataAnnuncio = new java.util.Date(dataSql.getTime());
+			a.setDataInserimento(dataAnnuncio);
+		}
 		a.setVisite(rs.getInt("visite"));
 		int stato = rs.getInt("stato");
 		if(stato==1){

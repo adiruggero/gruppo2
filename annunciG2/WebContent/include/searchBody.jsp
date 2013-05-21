@@ -16,6 +16,7 @@
 		
 			<logic:iterate id="annunci" name="listAnnunci">
 			<tr>
+				<td><bean:write name="annunci" property="dataInserimento"/></td>
 				<td><bean:write name="annunci" property="descrizione"/></td>
 				<td><bean:write name="annunci" property="visite"/></td>
 				<c:if test="${annunci.stato eq true }">
@@ -24,10 +25,7 @@
 				<c:if test="${annunci.stato eq false }">
 					<td>Non Attivo</td>
 				</c:if>
-				<td><bean:write name="annunci" property="categoria.descrizione"/></td>
-				<td><bean:write name="annunci" property="prodotto.descrizione"/></td>
-				<td><bean:write name="annunci" property="utente.username"/></td>
-				<td><html:submit value="Acquista!"></html:submit></td>
+				<td><html:submit value="Mostra"></html:submit></td>
 			</tr>		
 			</logic:iterate>
 		

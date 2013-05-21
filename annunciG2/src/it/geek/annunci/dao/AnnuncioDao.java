@@ -20,7 +20,7 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		
 		List<Object> v = new Vector<Object>();
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT a.codice_annuncio,a.descrizione,a.data_inserimento,a.visite,a.stato,p.descrizione AS prodDesc,c.descrizione AS catDesc,u.username");
+		sb.append("SELECT a.codice_annuncio,a.data_inserimento,a.descrizione,a.data_inserimento,a.visite,a.stato,p.descrizione AS prodDesc,c.descrizione AS catDesc,u.username");
 		sb.append(" FROM annunci a,prodotti p,categoria c,utenti u");
 		sb.append(" WHERE a.codice_categoria=c.codice_categoria AND");
 		sb.append(" a.codice_prodotto=p.codice_prodotto AND");
@@ -32,6 +32,12 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		if(a.getDescrizione()!=null){
 			sb.append(" a.descrizione LIKE ? AND");
 			v.add("%"+a.getDescrizione()+"%");
+		}
+		if(a.getDataInserimento()!=null){
+			sb.append(" a.data_inserimento=? AND");
+			java.util.Date dataIns = a.getDataInserimento();
+			java.sql.Date dataInsDb = new java.sql.Date(dataIns.getTime());
+			v.add(dataInsDb);
 		}
 		if(a.isStato()==true){
 			sb.append(" a.stato=? AND");
