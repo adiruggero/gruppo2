@@ -15,9 +15,9 @@ public class Annuncio implements Serializable {
 	private Date dataInserimento;
 	private int visite;
 	private boolean stato;
-	private Categoria categoria;
-	private Prodotto prodotto;
-	private Utente utente;
+	private Categoria categoria = new Categoria();
+	private Prodotto prodotto = new Prodotto();
+	private Utente utente = new Utente();
 	
 	
 	public int getCodiceAnnuncio() {
