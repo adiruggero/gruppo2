@@ -20,7 +20,7 @@ public class GestioneUtenteAction extends DispatchAction{
 	private static Logger logger = Logger.getLogger(GestioneUtenteAction.class);
 	private String forwardPath = "";
 	
-	public ActionForward changePrivate(ActionMapping mapping,ActionForm form,
+	public ActionForward listUtenti(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
 		String findForward="";
