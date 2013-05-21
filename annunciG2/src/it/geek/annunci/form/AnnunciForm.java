@@ -18,7 +18,12 @@ public class AnnunciForm extends ActionForm{
 	
 	
 	
-	
+	public boolean isStato() {
+		return stato;
+	}
+	public void setStato(boolean stato) {
+		this.stato = stato;
+	}
 	public String getMethod() {
 		return method;
 	}
@@ -43,12 +48,6 @@ public class AnnunciForm extends ActionForm{
 	}
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
-	}
-	public boolean isStato() {
-		return stato;
-	}
-	public void setStato(boolean stato) {
-		this.stato = stato;
 	}
 	
 	

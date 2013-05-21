@@ -16,7 +16,11 @@
 				<td>Descrizione</td>			
 				<td><html:text property="descrizione"/>	</td>	
 			</tr>	
-			
+			<tr>
+				<td><html:radio property="stato" value="true">Attivo</html:radio></td>
+				<td><html:radio property="stato" value="false">Non Attivo</html:radio></td>
+			</tr>	
+				
 			<html:hidden property="method" value="findAnnunci"/>
 			<tr><td><html:submit value="cerca un annuncio"/></td></tr>
 		</table>
