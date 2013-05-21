@@ -23,16 +23,20 @@ public class GestioneUtenteAction extends DispatchAction{
 	public ActionForward changePrivate(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
-		
+		String findForward="";
 		UtentiForm utenti = (UtentiForm) form;
 		HttpSession session = request.getSession();
 		
 		Utente u = (Utente) session.getAttribute("utenteSessione");
 		
 		if(u==null){
-			//Login
+			findForward="login";
+			
+			return mapping.findForward(findForward);
 		} else{
-			//
+			findForward="paginaUtente";
+			
+			return mapping.findForward(findForward);
 		}
 		
 		
