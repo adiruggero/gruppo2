@@ -9,8 +9,13 @@
 	<form-beans>
 		<form-bean 	name="annunciForm"
 					type="it.geek.annunci.form.AnnunciForm"/>
+		
+		<form-bean name ="utentiForm"
+					type ="it.geek.annunci.form.UtentiForm"/>			
 
 	</form-beans>
+	
+
 
 	<global-exceptions></global-exceptions>
 	
@@ -27,7 +32,19 @@
 				<forward name="search" path="/search.jsp"/>
 	</action>
 		
+		<action path="gestioneUtente"
+				name="utenteForm"
+				parameter="method"
+				scope="request"
+				type="it.geek.annunci.controller.GestioneUtenteAction">
+				
+				<forward name="login" path="/private.jsp"/>
+				<forward name="paginaUtente" path="/myPageBody.jsp"/>
+				
+		</action>
 	</action-mappings>
+	
+	
 
 	<message-resources parameter="it.geek.ApplicationResources"></message-resources>
 
