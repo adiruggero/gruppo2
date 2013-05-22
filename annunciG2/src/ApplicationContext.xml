@@ -15,11 +15,7 @@
 		</property>
 </bean>
 
-<bean id="utenti" class="it.geek.annunci.dao.UtenteDAO">
-	<property name="jdbcTemplate">
-	<ref bean="jdbcTemplate"></ref> 
-	</property>
-</bean>
+
 
 <bean id="annuncioSpring" class="it.geek.annunci.dao.AnnuncioDao">
 		<property name="jdbcTemplate">
@@ -74,7 +70,7 @@
 	<property name="dataSource" ref="dataSource"/>
 </bean>
 
-
+<!-- 
 <tx:advice id="residenzaTxAdvice"
 	transaction-manager="residenzaTxManager">
 		
@@ -99,7 +95,8 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-
+	
+-->
 
 
 </beans>
