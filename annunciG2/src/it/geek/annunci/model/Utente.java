@@ -15,8 +15,23 @@ public class Utente implements Serializable {
 	private Ruolo ruolo;
 	private boolean stato;
 	private int creditoResiduo;
+	private static int utentiOnline;
 	
 	
+	
+	
+	/**
+	 * @return the utentiOnline
+	 */
+	public static int getUtentiOnline() {
+		return utentiOnline;
+	}
+	/**
+	 * @param utentiOnline the utentiOnline to set
+	 */
+	public static void setUtentiOnline(int utentiOnline) {
+		Utente.utentiOnline = utentiOnline;
+	}
 	public int getCodiceUtente() {
 		return codiceUtente;
 	}

@@ -14,7 +14,7 @@ public class UtenteDAO implements UtenteDAOInterface{
 		ResultSet rs = null;
 		Utente u = null;
 		
-		String sql = ""
+		String sql = "";
 		
 		
 		

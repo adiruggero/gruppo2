@@ -28,12 +28,15 @@
 				parameter="method"
 				scope="request"
 				type="it.geek.annunci.controller.GestioneAnnunciAction">
-			
+				
+				<forward name="dettagli" path="/dettagli.jsp"/>
 				<forward name="search" path="/search.jsp"/>
-	</action>
+				<forward name="private" path="/myPageBody.jsp"/>
+				
+		</action>
 		
-		<action path="gestioneUtente"
-				name="utenteForm"
+		<action path="/gestioneUtente"
+				name="utentiForm"
 				parameter="method"
 				scope="request"
 				type="it.geek.annunci.controller.GestioneUtenteAction">
@@ -41,7 +44,9 @@
 				<forward name="login" path="/private.jsp"/>
 				<forward name="paginaUtente" path="/myPageBody.jsp"/>
 				
+				
 		</action>
+		
 	</action-mappings>
 	
 	

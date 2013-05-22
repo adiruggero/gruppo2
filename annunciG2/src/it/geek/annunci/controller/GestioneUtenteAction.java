@@ -1,5 +1,6 @@
 package it.geek.annunci.controller;
 
+import it.geek.annunci.factory.ServiceFactory;
 import it.geek.annunci.form.UtentiForm;
 import it.geek.annunci.model.Utente;
 
@@ -13,6 +14,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 import org.omg.CORBA.Request;
+import org.springframework.beans.BeanUtils;
 
 public class GestioneUtenteAction extends DispatchAction{
 
@@ -20,27 +22,43 @@ public class GestioneUtenteAction extends DispatchAction{
 	private static Logger logger = Logger.getLogger(GestioneUtenteAction.class);
 	private String forwardPath = "";
 	
-	public ActionForward changePrivate(ActionMapping mapping,ActionForm form,
+	public ActionForward logUtente(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
-		String findForward="";
-		UtentiForm utenti = (UtentiForm) form;
+
 		HttpSession session = request.getSession();
-		
 		Utente u = (Utente) session.getAttribute("utenteSessione");
 		
 		if(u==null){
-			findForward="login";
+			forwardPath="login";
 			
-			return mapping.findForward(findForward);
+			return mapping.findForward(forwardPath);
 		} else{
-			findForward="paginaUtente";
+			forwardPath="paginaUtente";
 			
-			return mapping.findForward(findForward);
+			return mapping.findForward(forwardPath);
 		}
+	
+	}
+	
+	public ActionForward login(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
 		
 		
+		UtentiForm uf = (UtentiForm) form;
+		Utente u = new Utente();
 		
+		BeanUtils.copyProperties(uf,u);
+		
+		Utente utenteLog = ServiceFactory.getUtenteService().get(u);
+		
+		if(utenteLog!=null){
+			HttpSession session = request.getSession();
+			session.setAttribute("utenteSession",utenteLog);
+			forwardPath="paginaUtente";
+		}
+		return mapping.findForward(forwardPath);
 		
 		
 	}

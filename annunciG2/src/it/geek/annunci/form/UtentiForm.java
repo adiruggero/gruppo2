@@ -1,6 +1,7 @@
 package it.geek.annunci.form;
 
 import org.apache.struts.action.ActionForm;
+import it.geek.annunci.model.Ruolo;
 
 public class UtentiForm extends ActionForm{
 
@@ -8,8 +9,19 @@ public class UtentiForm extends ActionForm{
 	private String password;
 	private String nome;
 	private String cognome;
-	private String ruolo;
+	private Ruolo ruolo = new Ruolo();
 	private int creditoResiduo;
+	private String method;
+	
+	public String getMethod(){
+		return method;
+	}
+	
+	public void setMethod(String method){
+		this.method=method;
+	}
+	
+	
 	public String getUsername() {
 		return username;
 	}
@@ -34,10 +46,10 @@ public class UtentiForm extends ActionForm{
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
-	public String getRuolo() {
+	public Ruolo getRuolo() {
 		return ruolo;
 	}
-	public void setRuolo(String ruolo) {
+	public void setRuolo(Ruolo ruolo) {
 		this.ruolo = ruolo;
 	}
 	public int getCreditoResiduo() {

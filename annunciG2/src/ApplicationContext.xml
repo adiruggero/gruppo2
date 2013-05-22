@@ -19,11 +19,34 @@
 		<property name="jdbcTemplate">
 			<ref bean="jdbcTemplate"></ref>
 		</property>
+</bean>		
 
+<bean id="utenteSpring" class="it.geek.annunci.dao.UtenteDao">
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate"></ref>
+		</property>
+</bean>
+
+<bean id="prodottoSpring" class="it.geek.annunci.dao.ProdottoDao">
+	<property name="jdbcTemplate">
+		<ref bean="jdbcTemplate"></ref>
+	</property>
+
+
+</bean>		
+
+
+<bean id="sutenti" class="it.geek.annunci.service.UtenteService">
+		<property name="utenteDao">
+			<ref bean="utenteSpring"></ref>
+		</property>
 </bean>
 
 
 <bean id="sannunci" class="it.geek.annunci.service.AnnuncioService">
+		<property name="prodottoDao">
+			<ref bean="prodottoSpring"></ref>
+		</property>
 		<property name="annuncioDao">
 			<ref bean="annuncioSpring"></ref>
 		</property>

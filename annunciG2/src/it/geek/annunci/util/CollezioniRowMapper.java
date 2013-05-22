@@ -14,8 +14,8 @@ public class CollezioniRowMapper implements RowMapper<LabelValueBean> {
 	
 		
 		
-		String value = rs.getString("codice_categoria");
-		String label = rs.getString("descrizione");
+		String value = rs.getString(1);
+		String label = rs.getString(2);
 		
 		LabelValueBean lvb = new LabelValueBean(label,value);
 		

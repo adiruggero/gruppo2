@@ -20,7 +20,16 @@ public class Categoria implements Serializable {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Categoria [codiceCategoria=" + codiceCategoria
+				+ ", descrizione=" + descrizione + "]";
+	}
 	
 	
-
+	
+	
 }

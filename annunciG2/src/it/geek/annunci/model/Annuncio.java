@@ -1,8 +1,7 @@
 package it.geek.annunci.model;
 
-
+import java.text.SimpleDateFormat;
 import it.geek.annunci.model.Utente;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,12 +12,21 @@ public class Annuncio implements Serializable {
 	private int codiceAnnuncio;
 	private String descrizione;
 	private Date dataInserimento;
-	private int visite;
+	private Integer visite;
 	private boolean stato;
-	private Categoria categoria = new Categoria();
-	private Prodotto prodotto = new Prodotto();
-	private Utente utente = new Utente();
+	private Categoria categoria;
+	private Prodotto prodotto;
+	private Utente utente;
 	
+	
+	public String getDataInserimentoFormatted(){
+		String data="";
+		if(dataInserimento!=null){
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			data = sdf.format(dataInserimento);
+		}
+		return data;
+	}
 	
 	public int getCodiceAnnuncio() {
 		return codiceAnnuncio;
@@ -38,7 +46,7 @@ public class Annuncio implements Serializable {
 	public void setDataInserimento(Date dataInserimento) {
 		this.dataInserimento = dataInserimento;
 	}
-	public int getVisite() {
+	public Integer getVisite() {
 		return visite;
 	}
 	public void setVisite(int visite) {
@@ -67,6 +75,18 @@ public class Annuncio implements Serializable {
 	}
 	public void setUtente(Utente utente) {
 		this.utente = utente;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Annuncio [codiceAnnuncio=" + codiceAnnuncio + ", descrizione="
+				+ descrizione + ", dataInserimento=" + dataInserimento
+				+ ", visite=" + visite + ", stato=" + stato + ", categoria="
+				+ categoria + ", prodotto=" + prodotto + ", utente=" + utente
+				+ "]";
 	}
 	
 	

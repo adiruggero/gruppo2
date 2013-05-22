@@ -7,7 +7,8 @@
 			<h3> Non sei loggato</h3>
 		</c:if>
 		
-		<c:if test="${utente ne null}">
-			<h3>Benvenuto ${utenteSession.username}</h3>
+		<c:if test="${utenteSession ne null}">
+			<h3> ${utenteSession.username}</h3>
+				
 		</c:if>
 </center>

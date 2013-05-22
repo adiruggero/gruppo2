@@ -10,8 +10,23 @@ public class Prodotto implements Serializable {
 	private String descrizione;
 	private int prezzo;
 	private Date dataAcquisto;
+	private Utente acquirente;
 	
 	
+	
+	
+	/**
+	 * @return the acquirente
+	 */
+	public Utente getAcquirente() {
+		return acquirente;
+	}
+	/**
+	 * @param acquirente the acquirente to set
+	 */
+	public void setAcquirente(Utente acquirente) {
+		this.acquirente = acquirente;
+	}
 	public int getCodiceProdotto() {
 		return codiceProdotto;
 	}
@@ -35,6 +50,15 @@ public class Prodotto implements Serializable {
 	}
 	public void setDataAcquisto(Date dataAcquisto) {
 		this.dataAcquisto = dataAcquisto;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Prodotto [codiceProdotto=" + codiceProdotto + ", descrizione="
+				+ descrizione + ", prezzo=" + prezzo + ", dataAcquisto="
+				+ dataAcquisto + "]";
 	}
 	
 	
