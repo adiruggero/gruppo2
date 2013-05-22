@@ -1,6 +1,11 @@
 package it.geek.annunci.form;
 
+import java.util.List;
+
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.util.LabelValueBean;
+
+import it.geek.annunci.factory.ServiceFactory;
 import it.geek.annunci.model.Ruolo;
 
 public class UtentiForm extends ActionForm{
@@ -12,7 +17,17 @@ public class UtentiForm extends ActionForm{
 	private Ruolo ruolo = new Ruolo();
 	private int creditoResiduo;
 	private String method;
+	private List<LabelValueBean> listRuoli;
 	
+	public List<LabelValueBean> getListRuoli() {
+		listRuoli=ServiceFactory.getCollezioniService().getCollezioni("ruoli");
+		return listRuoli;
+	}
+
+	public void setListRuoli(List<LabelValueBean> listRuoli) {
+		this.listRuoli = listRuoli;
+	}
+
 	public String getMethod(){
 		return method;
 	}

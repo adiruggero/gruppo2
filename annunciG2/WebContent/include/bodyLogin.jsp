@@ -12,7 +12,7 @@
 			<html:hidden property="method" value="login"/>
 			<tr><td><html:submit value="login"></html:submit>
 		</table>
-			altrimenti registrati <a href="gestioneUtenti.do?method=registrazione">qui!</a>
+			altrimenti registrati <a href="gestioneUtente.do?method=registrazione">qui!</a>
 			
 			
 		</html:form>

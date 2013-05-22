@@ -73,5 +73,17 @@ public class UtenteDao implements UtenteDaoInterface {
 		return utenteRet;
 		
 	}
+	
+public boolean insert(Utente u) {
+		
+		String sql ="INSERT INTO utenti (username, password, nome, cognome, codice_ruolo) values (?,?,?,?,?)";
+		int ritorno = jdbcTemplate.update(sql, new Object[] { u.getUsername(), u.getPassword(),u.getNome(), u.getCognome(), u.getRuolo()});
+		boolean ret = false;
+		if (ritorno>0){
+		ret = true;
+		}
+		return ret;
+	}
+
 
 }

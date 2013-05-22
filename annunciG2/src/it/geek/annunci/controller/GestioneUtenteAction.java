@@ -1,5 +1,7 @@
 package it.geek.annunci.controller;
 
+import java.lang.reflect.InvocationTargetException;
+
 import it.geek.annunci.factory.ServiceFactory;
 import it.geek.annunci.form.UtentiForm;
 import it.geek.annunci.model.Utente;
@@ -72,4 +74,30 @@ public class GestioneUtenteAction extends DispatchAction{
 				
 		}
 			
-	}		
+			
+
+public ActionForward eseguiRegistrazione(ActionMapping mapping, ActionForm form,
+		HttpServletRequest request, HttpServletResponse response)
+				throws Exception{
+	
+	UtentiForm uf = (UtentiForm) form;
+	
+	Utente u = new Utente();
+	
+	
+	BeanUtils.copyProperties(u,uf );
+	
+	
+	boolean inserito = ServiceFactory.getUtenteService().create(u);
+	
+	if (inserito) {
+		Utente utCompleto = ServiceFactory.getUtenteService().get(u);
+		HttpSession session = request.getSession();
+		session.setAttribute("utente", utCompleto);
+		
+		return mapping.findForward("paginaUtente");
+	}else{
+		return mapping.findForward("failure");
+	}
+}
+}

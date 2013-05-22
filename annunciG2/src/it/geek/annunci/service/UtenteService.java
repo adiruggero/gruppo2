@@ -28,6 +28,9 @@ public class UtenteService implements UtenteServiceInterface{
 		return utRet;
 	}
 
-	
+	public boolean create(Utente u) {
+		boolean ret = utenteDao.insert(u);
+		return ret;
+	}
 
 }
