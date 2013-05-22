@@ -32,7 +32,8 @@
 				<forward name="dettagli" path="/dettagli.jsp"/>
 				<forward name="search" path="/search.jsp"/>
 				<forward name="private" path="/myPageBody.jsp"/>
-				
+				<forward name="finalizza" path="/finalizza.jsp"/>
+				<forward name="success" path="/myPage.jsp"/>
 		</action>
 		
 		<action path="/gestioneUtente"
@@ -44,6 +45,7 @@
 				<forward name="login" path="/login.jsp"/>
 				<forward name="paginaUtente" path="/myPage.jsp"/>
 				<forward name="registrazione" path="/registrazione.jsp"/>
+				<forward name="failure" path="/error.jsp"/>
 		</action>
 		
 		

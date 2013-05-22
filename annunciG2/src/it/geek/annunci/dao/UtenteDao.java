@@ -74,6 +74,7 @@ public class UtenteDao implements UtenteDaoInterface {
 		
 	}
 	
+
 public boolean insert(Utente u) {
 		
 		String sql ="INSERT INTO utenti (username, password, nome, cognome, codice_ruolo) values (?,?,?,?,?)";
@@ -84,6 +85,7 @@ public boolean insert(Utente u) {
 		}
 		return ret;
 	}
+
 
 
 	public Utente findById(int id){

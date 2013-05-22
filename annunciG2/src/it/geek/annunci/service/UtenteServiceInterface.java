@@ -8,4 +8,5 @@ public interface UtenteServiceInterface {
 	public boolean create(Utente u);
 	public Utente getId (int id);
 
+
 }
