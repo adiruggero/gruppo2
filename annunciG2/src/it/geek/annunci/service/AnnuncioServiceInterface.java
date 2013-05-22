@@ -10,4 +10,5 @@ public interface AnnuncioServiceInterface {
 	public List<Annuncio> getWhere(Annuncio a);
 	public Annuncio getAndUpdate(Annuncio a);
 	public boolean buyAndUpdate(Annuncio a,Prodotto p,Utente u);
+	public Annuncio get(int codice);
 }

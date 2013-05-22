@@ -28,6 +28,21 @@ public class UtenteService implements UtenteServiceInterface{
 		return utRet;
 	}
 
-	
+	public Utente getId(int id){
+		
+		Utente u = null;
+		
+		if(id!=0){
+			
+			u = utenteDao.findById(id);
+			
+		}
+		return u;
+		
+	}
+	public boolean create(Utente u) {
+		boolean ret = utenteDao.insert(u);
+		return ret;
+	}
 
 }

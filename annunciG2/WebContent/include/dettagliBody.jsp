@@ -7,7 +7,7 @@
 	
 		<html:form method="POST" action="gestioneAnnunci.do">
 			<html:hidden property="method" value="compra"/>
-			<html:hidden property="prodotto.codiceProdotto" value="${annuncio.prodotto.codiceProdotto}"/>	
+			<html:hidden property="codiceAnnuncio" value="${annuncio.codiceAnnuncio}"/>	
 		
 			<table border="2">
 			
@@ -21,6 +21,7 @@
 					<td>Utente</td>
 				</tr>
 					<tr>	
+						
 						<td>${annuncio.dataInserimentoFormatted}</td>
 						<td>${annuncio.descrizione}</td>
 						<td>${annuncio.visite}</td>
@@ -33,13 +34,15 @@
 						<td>${annuncio.categoria.descrizione}</td>
 						<td>${annuncio.prodotto.descrizione}</td>
 						<td>${annuncio.utente.username }</td>
-						<c:if test="${annuncio.stato eq true }">
+						<c:if test="${annuncio.stato eq true and utenteSession ne null }">
 							<td><html:submit value="Buy!"></html:submit></td>
 						</c:if>
 						<c:if test="${annuncio.stato eq false }">
 							<td>Prodotto non più in vendita!</td>
 						</c:if>
-							
+						<c:if test="${utenteSession eq null}">
+							<td>Devi essere loggato per comprare! </td>
+						</c:if>	
 					</tr>
 			</table>
 		</html:form>

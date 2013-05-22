@@ -11,4 +11,5 @@
 			<h3> ${utenteSession.username}</h3>
 				
 		</c:if>
+		<a href="home.jsp">Home</a>
 </center>

@@ -105,7 +105,14 @@ public class AnnuncioService implements AnnuncioServiceInterface {
 			return false;
 		}
 		
+	}
+	
+	public Annuncio get(int codice){
 		
+		Annuncio a = null;
 		
+		a = annuncioDao.findById(codice);
+		
+		return a;
 	}
 }	

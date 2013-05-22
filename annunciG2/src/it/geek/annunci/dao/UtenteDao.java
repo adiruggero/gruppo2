@@ -73,5 +73,32 @@ public class UtenteDao implements UtenteDaoInterface {
 		return utenteRet;
 		
 	}
+	
+public boolean insert(Utente u) {
+		
+		String sql ="INSERT INTO utenti (username, password, nome, cognome, codice_ruolo) values (?,?,?,?,?)";
+		int ritorno = jdbcTemplate.update(sql, new Object[] { u.getUsername(), u.getPassword(),u.getNome(), u.getCognome(), u.getRuolo()});
+		boolean ret = false;
+		if (ritorno>0){
+		ret = true;
+		}
+		return ret;
+	}
 
+
+	public Utente findById(int id){
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("SELECT u.codice_utente,u.username,u.password,u.nome,u.cognome,r.codice_ruolo,u.stato,u.credito_residuo,r.descrizione");
+		sb.append(" FROM utenti u, ruoli r");
+		sb.append(" WHERE u.codice_ruolo=r.codice_ruolo AND u.codice_utente=?");
+		
+		Utente ut = jdbcTemplate.queryForObject(sb.toString(),new Object[]{id},new UtenteRowMapper());
+		
+		return ut;
+		
+		
+		
+	}
 }

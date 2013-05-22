@@ -91,28 +91,67 @@ public class GestioneAnnunciAction extends DispatchAction{
 		dateConverter.setPattern("dd/MM/yyyy");   
 		ConvertUtils.register(dateConverter, java.util.Date.class); 
 		
-		
-		
-		Prodotto p = new Prodotto();
-		AnnunciForm af = (AnnunciForm)form;
-		Annuncio a = new Annuncio();
-		
-		
-		BeanUtils.copyProperties(a,af);
-		
 		HttpSession session = request.getSession();
 		
-		Utente u =(Utente) session.getAttribute("utenteSession");
-		p.setCodiceProdotto(a.getProdotto().getCodiceProdotto());
-	
-		boolean ret = ServiceFactory.getAnnuncioService().buyAndUpdate(a, p, u);
+		Utente ut = (Utente)session.getAttribute("utenteSession");
+		int codice = ut.getCodiceUtente();
+		Utente ret = ServiceFactory.getUtenteService().getId(codice);
 		
-		if(ret){
-			forwardPath="private";
+		request.setAttribute("utente",ret);
 		
-		}
+		AnnunciForm af = (AnnunciForm) form;
+		Annuncio a = new Annuncio();
+		BeanUtils.copyProperties(a, af);
+		int codiceAnnuncio = a.getCodiceAnnuncio();
+		
+		
+		Annuncio aRet = ServiceFactory.getAnnuncioService().get(codiceAnnuncio);
+		
+		request.setAttribute("annuncio",aRet);
+		
+		forwardPath="finalizza";
 		
 		return mapping.findForward(forwardPath);
 		
+	}	
+	
+	public ActionForward finalizza(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)throws Exception{
+		
+		java.util.Date defaultValue = null;
+		DateConverter dateConverter = new DateConverter(defaultValue); 
+		dateConverter.setPattern("dd/MM/yyyy");   
+		ConvertUtils.register(dateConverter, java.util.Date.class);
+		
+		HttpSession session = request.getSession();
+		Utente ut = (Utente) session.getAttribute("utenteSession");
+		
+		int codice = ut.getCodiceUtente();
+		Utente ret = ServiceFactory.getUtenteService().getId(codice);
+		
+		AnnunciForm af = (AnnunciForm) form;
+		Annuncio a = new Annuncio();
+		BeanUtils.copyProperties(a,af);
+		
+		int codiceAnnuncio = a.getCodiceAnnuncio();
+		
+		Annuncio aRet = ServiceFactory.getAnnuncioService().get(codiceAnnuncio);
+		
+		Prodotto p = new Prodotto();
+		
+		int codiceProdotto = aRet.getProdotto().getCodiceProdotto();
+		
+		p.setCodiceProdotto(codiceProdotto);
+		
+		boolean comprato = ServiceFactory.getAnnuncioService().buyAndUpdate(aRet,p,ret);
+		
+		if(comprato){
+			forwardPath="success";
+		}else{
+			forwardPath="failure";
+		}
+		return mapping.findForward(forwardPath);		
+		
 	}
+		
 }

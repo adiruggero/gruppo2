@@ -33,8 +33,10 @@ public class AnnuncioRowMapper implements RowMapper<Annuncio> {
 		}else{
 			a.setStato(false);
 		}
+		c.setCodiceCategoria(rs.getInt("codice_categoria"));
 		c.setDescrizione(rs.getString("catDesc"));
 		a.setCategoria(c);
+		p.setCodiceProdotto(rs.getInt("codice_prodotto"));
 		p.setDescrizione(rs.getString("prodDesc"));
 		a.setProdotto(p);
 		u.setUsername(rs.getString("username"));

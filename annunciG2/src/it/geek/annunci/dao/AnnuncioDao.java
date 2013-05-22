@@ -20,7 +20,7 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		
 		List<Object> v = new Vector<Object>();
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT a.codice_annuncio,a.data_inserimento,a.descrizione,a.data_inserimento,a.visite,a.stato,p.descrizione AS prodDesc,c.descrizione AS catDesc,u.username");
+		sb.append("SELECT a.codice_annuncio,a.data_inserimento,a.descrizione,a.visite,a.stato,p.codice_prodotto,p.descrizione AS prodDesc,c.codice_categoria,c.descrizione AS catDesc,u.codice_utente,u.username");
 		sb.append(" FROM annunci a,prodotti p,categoria c,utenti u");
 		sb.append(" WHERE a.codice_categoria=c.codice_categoria AND");
 		sb.append(" a.codice_prodotto=p.codice_prodotto AND");
@@ -131,7 +131,7 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("SELECT a.codice_annuncio,a.data_inserimento,a.descrizione,a.data_inserimento,a.visite,a.stato,p.descrizione AS prodDesc,c.descrizione AS catDesc,u.username");
+		sb.append("SELECT a.codice_annuncio,a.data_inserimento,a.descrizione,a.data_inserimento,a.visite,a.stato,p.codice_prodotto,p.descrizione AS prodDesc,c.codice_categoria,c.descrizione AS catDesc,u.codice_utente,u.username");
 		sb.append(" FROM annunci a,prodotti p,categoria c,utenti u");
 		sb.append(" WHERE a.codice_categoria=c.codice_categoria AND");
 		sb.append(" a.codice_prodotto=p.codice_prodotto AND");
