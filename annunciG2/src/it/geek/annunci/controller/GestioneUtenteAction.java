@@ -44,4 +44,15 @@ public class GestioneUtenteAction extends DispatchAction{
 		
 		
 	}
-}
+	
+	public ActionForward registrazione(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
+		
+		forwardPath="registrazione";
+		return mapping.findForward(forwardPath);			
+				
+				
+		}
+			
+	}		

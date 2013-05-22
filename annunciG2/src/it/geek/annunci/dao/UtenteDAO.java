@@ -4,10 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import it.geek.annunci.model.Utente;
 
 public class UtenteDAO implements UtenteDAOInterface{
 	
+	
+	private JdbcTemplate jdbcTemplate;
+
+
+
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 	public Utente login (String username, String password) {
 
         PreparedStatement ps = null;
@@ -53,9 +64,23 @@ try {
 							
 					
 				}	return u;
+	}
+
 			
-			}
+		
+	
+public boolean insert(Utente u, Connection conn) {
+		
+		String sql ="INSERT INTO utenti (username, password, nome, cognome, codice_ruolo, stato, credito_residuo) values (?,?,?,?,?,?,?)";
+		int ritorno = jdbcTemplate.update(sql, new Object[] {u.getUsername(), u.getPassword(), u.getNome(), u.getCognome(), u.getRuolo(), u.isStato(), u.getCreditoResiduo()});
+		boolean ret = false;
+		if (ritorno>0){
+		ret = true;
+		}
+		return ret;
+	
 }
 	 
 	 
 
+}

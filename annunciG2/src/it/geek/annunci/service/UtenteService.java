@@ -17,28 +17,10 @@ public class UtenteService implements UtenteServiceInterface {
 	public void setUtenteDao(UtenteDAOInterface utenteDao){
 		this.utente = utenteDao;	
 	}
-	
-	
-	public Utente get (String id) {
-		Connection conn = ConnessioneJNDI.getConnection();
-		Utente u = null;
-		try {
-			u = utente.findByWhere(id, conn);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				System.out.println ("Impossibile chiudere la Connection" + e);
-				e.printStackTrace();
-			}
-		}
-		
-		return u;
-		
+
+	@Override
+	public Utente get(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
 }
-
-	

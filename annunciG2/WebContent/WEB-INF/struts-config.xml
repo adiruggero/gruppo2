@@ -43,7 +43,7 @@
 				
 				<forward name="login" path="/login.jsp"/>
 				<forward name="paginaUtente" path="/myPageBody.jsp"/>
-				
+				<forward name="registrazione" path="/registrazione.jsp"/>
 		</action>
 		
 		<action path="/login"
