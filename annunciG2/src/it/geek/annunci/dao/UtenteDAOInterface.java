@@ -1,4 +1,4 @@
-package it.geek.anunci.dao;
+package it.geek.annunci.dao;
 
 public interface UtenteDAOInterface {
 

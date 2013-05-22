@@ -20,12 +20,11 @@ public class GestioneUtenteAction extends DispatchAction{
 
 	
 	private static Logger logger = Logger.getLogger(GestioneUtenteAction.class);
-	private String forwardPath = "";
 	
 	public ActionForward logUtente(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
-
+		String forwardPath = "";
 		HttpSession session = request.getSession();
 		Utente u = (Utente) session.getAttribute("utenteSessione");
 		
@@ -45,7 +44,7 @@ public class GestioneUtenteAction extends DispatchAction{
 			HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
 		
-		
+		String forwardPath = "";
 		UtentiForm uf = (UtentiForm) form;
 		Utente u = new Utente();
 		
@@ -62,4 +61,15 @@ public class GestioneUtenteAction extends DispatchAction{
 		
 		
 	}
-}
+	
+	public ActionForward registrazione(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
+		
+		String forwardPath ="registrazione";
+		return mapping.findForward(forwardPath);			
+				
+				
+		}
+			
+	}		

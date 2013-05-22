@@ -4,6 +4,7 @@ import it.geek.annunci.model.Utente;
 
 public interface UtenteServiceInterface {
 	
-	public Utente get(Utente u);
+	public Utente get (Utente u);
+	
 
 }

@@ -1,8 +1,4 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
-
-
-
-
 <center>
 		<h3>Effettua la login qui!</h3>
 		<html:form method="POST" action="gestioneUtente.do">

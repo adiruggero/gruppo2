@@ -11,8 +11,8 @@
 					type="it.geek.annunci.form.AnnunciForm"/>
 		
 		<form-bean name ="utentiForm"
-					type ="it.geek.annunci.form.UtentiForm"/>			
-
+					type ="it.geek.annunci.form.UtentiForm"/>	
+					
 	</form-beans>
 	
 
@@ -36,16 +36,16 @@
 		</action>
 		
 		<action path="/gestioneUtente"
-				name="utentiForm"
+				name="utenteForm"
 				parameter="method"
 				scope="request"
 				type="it.geek.annunci.controller.GestioneUtenteAction">
 				
-				<forward name="login" path="/private.jsp"/>
-				<forward name="paginaUtente" path="/myPageBody.jsp"/>
-				
-				
+				<forward name="login" path="/login.jsp"/>
+				<forward name="paginaUtente" path="/myPage.jsp"/>
+				<forward name="registrazione" path="/registrazione.jsp"/>
 		</action>
+		
 		
 	</action-mappings>
 	
