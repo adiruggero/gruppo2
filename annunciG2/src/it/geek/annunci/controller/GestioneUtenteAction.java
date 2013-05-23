@@ -76,9 +76,13 @@ public class GestioneUtenteAction extends DispatchAction{
 			session.setAttribute("utenteSession",utenteLog);
 			
 			Prodotto p = new Prodotto();
-			p.setAcquirente(u);
+			p.setAcquirente(utenteLog);
 			
 			List<Prodotto> listProdotti = ServiceFactory.getProdottoService().getByWhere(p);
+			
+			int utentiOnline = Utente.getUtentiOnline();
+			utentiOnline++;
+			Utente.setUtentiOnline(utentiOnline);
 			
 			request.setAttribute("listProdotti",listProdotti);
 			
@@ -126,4 +130,28 @@ public class GestioneUtenteAction extends DispatchAction{
 		}
 		
 	}
+
+	public ActionForward logout(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+					throws Exception{
+		
+		String forwardPath="";
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		int utenti = Utente.getUtentiOnline();
+		utenti--;
+		if(utenti<0){
+			utenti=0;
+		}
+		Utente.setUtentiOnline(utenti);
+		forwardPath="home";
+		
+		
+		return mapping.findForward(forwardPath);
+		
+		
+	}
+	
 }
