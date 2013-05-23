@@ -48,7 +48,7 @@ public class UtenteDao implements UtenteDaoInterface {
 			list.add(u.getCognome());
 		}
 		if(u.getRuolo()!=null && u.getRuolo().getCodiceRuolo()!=0){
-			sb.append(" codice_ruolo=? AND");
+			sb.append(" u.codice_ruolo=? AND");
 			list.add(u.getRuolo().getCodiceRuolo());
 		}
 		/*if(u.isStato()==true){

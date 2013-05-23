@@ -94,8 +94,8 @@ public class GestioneAnnunciAction extends DispatchAction{
 		HttpSession session = request.getSession();
 		
 		Utente ut = (Utente)session.getAttribute("utenteSession");
-		int codice = ut.getCodiceUtente();
-		Utente ret = ServiceFactory.getUtenteService().getId(codice);
+	
+		Utente ret = ServiceFactory.getUtenteService().get(ut);
 		
 		request.setAttribute("utente",ret);
 		
@@ -126,8 +126,7 @@ public class GestioneAnnunciAction extends DispatchAction{
 		HttpSession session = request.getSession();
 		Utente ut = (Utente) session.getAttribute("utenteSession");
 		
-		int codice = ut.getCodiceUtente();
-		Utente ret = ServiceFactory.getUtenteService().getId(codice);
+		Utente ret = ServiceFactory.getUtenteService().get(ut);
 		
 		AnnunciForm af = (AnnunciForm) form;
 		Annuncio a = new Annuncio();

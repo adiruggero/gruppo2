@@ -25,7 +25,7 @@
 						
 						<td>${annuncio.dataInserimentoFormatted}</td>
 						<td>${annuncio.descrizione}</td>
-						<td>${annuncio.prezzo}</td>
+						<td>${annuncio.prodotto.prezzo}</td>
 						<td>${annuncio.visite}</td>
 						<c:if test="${annuncio.stato eq true }">
 							<td>Attivo</td>

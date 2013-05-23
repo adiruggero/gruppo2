@@ -23,7 +23,7 @@
 				
 				<td><bean:write name="annunci" property="dataInserimentoFormatted"/></td>
 				<td><bean:write name="annunci" property="descrizione"/></td>
-				<td><bean:write name="annunci" property="prezzo"/></td>
+				<td><bean:write name="annunci" property="prodotto.prezzo"/></td>
 				<td><bean:write name="annunci" property="visite"/></td>
 				<c:if test="${annunci.stato eq true }">
 					<td>Attivo</td>

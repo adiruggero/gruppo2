@@ -16,7 +16,6 @@ public class AnnunciForm extends ActionForm{
 	private String dataInserimento;
 	private String dataInserimentoFormatted;
 	private String descrizione;
-	private int prezzo;
 	private boolean stato;
 	private int codiceAnnuncio;
 	private int visite;
@@ -26,13 +25,7 @@ public class AnnunciForm extends ActionForm{
 	private String method;
 	
 	
-	public void setPrezzo(int prezzo){
-		this.prezzo=prezzo;
-	}
-	public int getPrezzo(){
-		return prezzo;
-	}
-	
+
 
 	public int getVisite() {
 		return visite;
