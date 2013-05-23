@@ -20,7 +20,7 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		
 		List<Object> v = new Vector<Object>();
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT a.codice_annuncio,a.data_inserimento,a.descrizione,a.visite,a.stato,p.codice_prodotto,p.descrizione AS prodDesc,c.codice_categoria,c.descrizione AS catDesc,u.codice_utente,u.username");
+		sb.append("SELECT a.codice_annuncio,a.data_inserimento,a.descrizione,a.prezzo,a.visite,a.stato,p.codice_prodotto,p.descrizione AS prodDesc,c.codice_categoria,c.descrizione AS catDesc,u.codice_utente,u.username");
 		sb.append(" FROM annunci a,prodotti p,categoria c,utenti u");
 		sb.append(" WHERE a.codice_categoria=c.codice_categoria AND");
 		sb.append(" a.codice_prodotto=p.codice_prodotto AND");
@@ -32,6 +32,12 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		if(a.getDescrizione()!=null){
 			sb.append(" a.descrizione LIKE ? AND");
 			v.add("%"+a.getDescrizione()+"%");
+		}
+		if(a.getPrezzo()!=0){
+			sb.append(" a.prezzo=? AND");
+			v.add(a.getPrezzo());
+			
+			
 		}
 		if(a.getDataInserimento()!=null){
 			sb.append(" a.data_inserimento=? AND");
@@ -79,6 +85,10 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		if(a.getDescrizione()!=null){
 			sb.append(" descrizione=? ,");
 			list.add(a.getDescrizione());
+		}
+		if(a.getPrezzo()!=0){
+			sb.append(" prezzo=? ,");
+			list.add(a.getPrezzo());
 		}
 		if(a.getDataInserimento()!=null){
 			sb.append(" data_inserimento=? ,");
@@ -131,7 +141,7 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("SELECT a.codice_annuncio,a.data_inserimento,a.descrizione,a.data_inserimento,a.visite,a.stato,p.codice_prodotto,p.descrizione AS prodDesc,c.codice_categoria,c.descrizione AS catDesc,u.codice_utente,u.username");
+		sb.append("SELECT a.codice_annuncio,a.data_inserimento,a.descrizione,a.prezzo,a.data_inserimento,a.visite,a.stato,p.codice_prodotto,p.descrizione AS prodDesc,c.codice_categoria,c.descrizione AS catDesc,u.codice_utente,u.username");
 		sb.append(" FROM annunci a,prodotti p,categoria c,utenti u");
 		sb.append(" WHERE a.codice_categoria=c.codice_categoria AND");
 		sb.append(" a.codice_prodotto=p.codice_prodotto AND");

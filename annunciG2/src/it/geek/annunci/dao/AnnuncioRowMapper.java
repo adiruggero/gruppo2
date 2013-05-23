@@ -21,6 +21,7 @@ public class AnnuncioRowMapper implements RowMapper<Annuncio> {
 		
 		a.setCodiceAnnuncio(rs.getInt("codice_annuncio"));
 		a.setDescrizione(rs.getString("descrizione"));
+		a.setPrezzo(rs.getInt("prezzo"));
 		java.sql.Date dataSql = rs.getDate("data_inserimento");
 		if(dataSql!=null){
 			java.util.Date dataAnnuncio = new java.util.Date(dataSql.getTime());

@@ -14,6 +14,7 @@
 				<tr>
 					<td>Data Inserimento</td>
 					<td>Dettagli</td>
+					<td>Prezzo</td>
 					<td>Visite</td>
 					<td>Stato</td>
 					<td>Categoria</td>
@@ -24,6 +25,7 @@
 						
 						<td>${annuncio.dataInserimentoFormatted}</td>
 						<td>${annuncio.descrizione}</td>
+						<td>${annuncio.prezzo}</td>
 						<td>${annuncio.visite}</td>
 						<c:if test="${annuncio.stato eq true }">
 							<td>Attivo</td>

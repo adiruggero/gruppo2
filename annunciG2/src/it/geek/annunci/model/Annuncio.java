@@ -11,6 +11,7 @@ public class Annuncio implements Serializable {
 
 	private int codiceAnnuncio;
 	private String descrizione;
+	private int prezzo;
 	private Date dataInserimento;
 	private Integer visite;
 	private boolean stato;
@@ -26,6 +27,14 @@ public class Annuncio implements Serializable {
 			data = sdf.format(dataInserimento);
 		}
 		return data;
+	}
+	
+	public int getPrezzo(){
+		return prezzo;
+	}
+	
+	public void setPrezzo(int prezzo){
+		this.prezzo=prezzo;
 	}
 	
 	public int getCodiceAnnuncio() {
