@@ -23,19 +23,17 @@
 		</property>
 </bean>		
 
+<bean id="prodottoSpring" class="it.geek.annunci.dao.ProdottoDao">
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate"></ref>
+		</property>
+</bean>	
+
 <bean id="utenteSpring" class="it.geek.annunci.dao.UtenteDao">
 		<property name="jdbcTemplate">
 			<ref bean="jdbcTemplate"></ref>
 		</property>
 </bean>
-
-<bean id="prodottoSpring" class="it.geek.annunci.dao.ProdottoDao">
-	<property name="jdbcTemplate">
-		<ref bean="jdbcTemplate"></ref>
-	</property>
-
-
-</bean>		
 
 
 <bean id="sutenti" class="it.geek.annunci.service.UtenteService">
@@ -59,6 +57,13 @@
 			<ref bean="collezioniSpring"></ref>
 		</property>
 </bean>
+
+<bean id="sprodotto" class="it.geek.annunci.service.ProdottoService">
+		<property name="prodottoDao">
+			<ref bean="prodottoSpring"></ref>
+		</property>
+</bean>
+
 
 <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 	<property name="jndiName">

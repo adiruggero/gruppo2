@@ -18,7 +18,45 @@ public class ProdottoDao implements ProdottoDaoInterface {
 		this.jdbcTemplate=jdbcTemplate;
 		
 	}
-
+	
+	public List<Prodotto> findByWhere(Prodotto p){
+		
+		
+		List<Object> list = new ArrayList<Object>();
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT p.codice_prodotto,p.descrizione,p.prezzo,p.data_acquisto,u.codice_utente");
+		sb.append(" FROM utenti u,prodotti p");
+		sb.append(" WHERE u.codice_utente=p.acquirente AND");
+		if(p.getCodiceProdotto()!=0){
+			sb.append(" p.codice_prodotto=? AND");
+			list.add(p.getCodiceProdotto());
+		}
+		if(p.getDescrizione()!=null){
+			sb.append(" p.descrizione=? AND");
+			list.add(p.getDescrizione());
+		}
+		if(p.getPrezzo()!=0){
+			sb.append(" p.prezzo=? AND");
+			list.add(p.getPrezzo());
+		}
+		if(p.getDataAcquisto()!=null){
+			sb.append(" p.data_acquisto=? AND");
+			java.util.Date dataAcq = p.getDataAcquisto();
+			java.sql.Date dataAcqSql = new java.sql.Date(dataAcq.getTime());
+			list.add(dataAcqSql);
+		}
+		if(p.getAcquirente()!=null && p.getAcquirente().getCodiceUtente()!=0){
+			sb.append(" p.acquirente=? AND");
+			list.add(p.getAcquirente().getCodiceUtente());
+		}
+		sb.delete(sb.length()-4, sb.length());
+		
+		List<Prodotto> listProdotto = jdbcTemplate.query(sb.toString(),list.toArray(),new ProdottoRowMapper());
+		
+		return listProdotto;
+		
+	}
+	
 	public boolean update(Prodotto p) {
 		
 		

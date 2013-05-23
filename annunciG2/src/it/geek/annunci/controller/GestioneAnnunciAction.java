@@ -146,6 +146,15 @@ public class GestioneAnnunciAction extends DispatchAction{
 		boolean comprato = ServiceFactory.getAnnuncioService().buyAndUpdate(aRet,p,ret);
 		
 		if(comprato){
+			
+			Prodotto prodUtente = new Prodotto();
+			prodUtente.setAcquirente(ret);
+			
+			List<Prodotto> list = ServiceFactory.getProdottoService().getByWhere(prodUtente);
+			
+			request.setAttribute("listProdotti",list);
+			
+			
 			forwardPath="success";
 		}else{
 			forwardPath="failure";

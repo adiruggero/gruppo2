@@ -1,9 +1,11 @@
 package it.geek.annunci.controller;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import it.geek.annunci.factory.ServiceFactory;
 import it.geek.annunci.form.UtentiForm;
+import it.geek.annunci.model.Prodotto;
 import it.geek.annunci.model.Utente;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,13 +30,28 @@ public class GestioneUtenteAction extends DispatchAction{
 			throws Exception{
 		String forwardPath = "";
 		HttpSession session = request.getSession();
-		Utente u = (Utente) session.getAttribute("utenteSessione");
+		Utente u = (Utente) session.getAttribute("utenteSession");
 		
 		if(u==null){
 			forwardPath="login";
 			
+			Prodotto p = new Prodotto();
+			p.setAcquirente(u);
+			
+			List<Prodotto> listProdotti = ServiceFactory.getProdottoService().getByWhere(p);
+			
+			request.setAttribute("listProdotti",listProdotti);
+			
 			return mapping.findForward(forwardPath);
 		} else{
+			
+			Prodotto p = new Prodotto();
+			p.setAcquirente(u);
+			
+			List<Prodotto> listProdotti = ServiceFactory.getProdottoService().getByWhere(p);
+			
+			request.setAttribute("listProdotti",listProdotti);
+			
 			forwardPath="paginaUtente";
 			
 			return mapping.findForward(forwardPath);
@@ -57,6 +74,14 @@ public class GestioneUtenteAction extends DispatchAction{
 		if(utenteLog!=null){
 			HttpSession session = request.getSession();
 			session.setAttribute("utenteSession",utenteLog);
+			
+			Prodotto p = new Prodotto();
+			p.setAcquirente(u);
+			
+			List<Prodotto> listProdotti = ServiceFactory.getProdottoService().getByWhere(p);
+			
+			request.setAttribute("listProdotti",listProdotti);
+			
 			forwardPath="paginaUtente";
 		}
 		return mapping.findForward(forwardPath);

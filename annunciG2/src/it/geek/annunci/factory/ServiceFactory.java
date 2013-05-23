@@ -2,6 +2,7 @@ package it.geek.annunci.factory;
 
 import it.geek.annunci.service.AnnuncioServiceInterface;
 import it.geek.annunci.service.CollezioniServiceInterface;
+import it.geek.annunci.service.ProdottoServiceInterface;
 import it.geek.annunci.service.UtenteServiceInterface;
 
 import org.springframework.context.ApplicationContext;
@@ -25,5 +26,9 @@ public class ServiceFactory {
 	
 	public static UtenteServiceInterface getUtenteService(){
 		return (UtenteServiceInterface)ctx.getBean("sutenti");
+	}
+	
+	public static ProdottoServiceInterface getProdottoService(){
+		return (ProdottoServiceInterface) ctx.getBean("sprodotto");
 	}
 }
