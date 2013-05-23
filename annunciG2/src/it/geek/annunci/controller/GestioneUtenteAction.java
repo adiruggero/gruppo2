@@ -100,29 +100,30 @@ public class GestioneUtenteAction extends DispatchAction{
 		}
 			
 			
-
-public ActionForward eseguiRegistrazione(ActionMapping mapping, ActionForm form,
-		HttpServletRequest request, HttpServletResponse response)
-				throws Exception{
 	
-	UtentiForm uf = (UtentiForm) form;
-	
-	Utente u = new Utente();
-	
-	
-	BeanUtils.copyProperties(u,uf );
-	
-	
-	boolean inserito = ServiceFactory.getUtenteService().create(u);
-	
-	if (inserito) {
-		Utente utCompleto = ServiceFactory.getUtenteService().get(u);
-		HttpSession session = request.getSession();
-		session.setAttribute("utente", utCompleto);
+	public ActionForward eseguiRegistrazione(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+					throws Exception{
 		
-		return mapping.findForward("paginaUtente");
-	}else{
-		return mapping.findForward("failure");
+		String forwardPath="";
+		
+		UtentiForm uf = (UtentiForm) form;
+		
+		Utente u = new Utente();
+		
+		BeanUtils.copyProperties(uf,u);
+		
+		boolean inserito = ServiceFactory.getUtenteService().create(u);
+		
+		if(inserito){
+			HttpSession session = request.getSession();
+			session.setAttribute("utenteSession", u);
+			forwardPath="paginaUtente";
+			return mapping.findForward(forwardPath);
+		}else{
+			forwardPath="failure";
+			return mapping.findForward(forwardPath);
+		}
+		
 	}
-}
 }

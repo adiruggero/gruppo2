@@ -1,4 +1,4 @@
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+ <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -22,7 +22,7 @@
 			<tr>
 		<td>Ruolo:</td>
 				<td><html:select name="utentiForm" property="ruolo.codiceRuolo">
-				<html:optionsCollection name = "utentiForm" property = "listRuoli" label="label" value="value"/>
+				<html:optionsCollection name = "utentiForm" property = "listRuoli"/>
 				</html:select></td>
 				</td>		
 			</tr>
