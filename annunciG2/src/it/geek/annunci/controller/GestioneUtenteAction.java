@@ -145,5 +145,20 @@ public class GestioneUtenteAction extends DispatchAction{
 		return mapping.findForward(forwardPath);			
 				
 				
-		}
+	}
+	public ActionForward logout(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		int utentiOnline = Utente.getUtentiOnline();
+		utentiOnline--;
+		Utente.setUtentiOnline(utentiOnline);
+		
+		return mapping.findForward("home.jsp");
+		
+	}
+	
 }
