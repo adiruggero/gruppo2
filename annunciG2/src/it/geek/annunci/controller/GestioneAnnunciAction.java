@@ -155,23 +155,35 @@ public class GestioneAnnunciAction extends DispatchAction{
 		
 		p.setCodiceProdotto(codiceProdotto);
 		
-		boolean comprato = ServiceFactory.getAnnuncioService().buyAndUpdate(aRet,p,ret);
 		
-		if(comprato){
+		try{
+			boolean comprato = ServiceFactory.getAnnuncioService().buyAndUpdate(aRet,p,ret);
+			if(comprato){
+				
+				Prodotto prodUtente = new Prodotto();
+				prodUtente.setAcquirente(ret);
+				
+				List<Prodotto> list = ServiceFactory.getProdottoService().getByWhere(prodUtente);
+				
+				request.setAttribute("listProdotti",list);
+				
+				
+				forwardPath="success";
+			}else{
+				forwardPath="failure";
+			}
+			return mapping.findForward(forwardPath);
+		
+		
+		}catch(RuntimeException e){
 			
-			Prodotto prodUtente = new Prodotto();
-			prodUtente.setAcquirente(ret);
+			request.setAttribute("annuncio",aRet);
 			
-			List<Prodotto> list = ServiceFactory.getProdottoService().getByWhere(prodUtente);
+			request.setAttribute("errorMessage","Come pretendi di comprare se non hai abbastanza soldi?!");
 			
-			request.setAttribute("listProdotti",list);
-			
-			
-			forwardPath="success";
-		}else{
-			forwardPath="failure";
+			return mapping.findForward("retry");
 		}
-		return mapping.findForward(forwardPath);		
+				
 		
 	}
 		

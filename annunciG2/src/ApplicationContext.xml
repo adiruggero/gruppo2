@@ -50,6 +50,9 @@
 		<property name="annuncioDao">
 			<ref bean="annuncioSpring"></ref>
 		</property>
+		<property name="utenteDao">
+			<ref bean="utenteSpring"></ref>
+		</property>
 </bean>
 
 <bean id="scollezioni" class="it.geek.annunci.service.CollezioniService">

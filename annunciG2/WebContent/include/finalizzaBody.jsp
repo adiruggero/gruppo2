@@ -1,21 +1,23 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <center>
-
+	
+	
+	${errorMessage}
 		
 	<html:form method="POST" action="gestioneAnnunci.do">	
 		<html:hidden property="method" value="finalizza"/>	
 		<html:hidden property="codiceAnnuncio" value="${annuncio.codiceAnnuncio }"/>
 		<table>
 		<tr><td><h3>Dettagli utente:</h3> </td></tr>
-				<tr><td>Username: </td><td>${utente.username}</td></tr>
-				<tr><td>Password: </td><td>${utente.password}</td></tr>
-				<tr><td>Nome: </td>  <td>${utente.nome}</td></tr>
-				<tr><td>Cognome:</td><td>${utente.cognome}</td></tr>
-				<tr><td>Credito Residuo:</td><td>${utente.creditoResiduo}£</td></tr>
+				<tr><td>Username: </td><td>${utenteSession.username}</td></tr>
+				<tr><td>Password: </td><td>${utenteSession.password}</td></tr>
+				<tr><td>Nome: </td>  <td>${utenteSession.nome}</td></tr>
+				<tr><td>Cognome:</td><td>${utenteSession.cognome}</td></tr>
+				<tr><td>Credito Residuo:</td><td>${utenteSession.creditoResiduo}£</td></tr>
 				
-				<br>
-				<br>
+				<br/>
+				<br/>
 				
 	<tr><td>	<h3>Dettagli acquisto:</h3> </td></tr>
 		

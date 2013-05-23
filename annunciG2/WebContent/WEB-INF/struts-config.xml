@@ -35,6 +35,7 @@
 				<forward name="finalizza" path="/finalizza.jsp"/>
 				<forward name="success" path="/myPage.jsp"/>
 				<forward name="login" path="/login.jsp"/>
+				<forward name="retry" path="/finalizza.jsp"/>
 		</action>
 		
 		<action path="/gestioneUtente"

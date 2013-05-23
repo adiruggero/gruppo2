@@ -1,5 +1,6 @@
 package it.geek.annunci.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -75,7 +76,7 @@ public class UtenteDao implements UtenteDaoInterface {
 	}
 	
 
-public boolean insert(Utente u) {
+	public boolean insert(Utente u) {
 		
 		String sql ="INSERT INTO utenti (username, password, nome, cognome, codice_ruolo) values (?,?,?,?,?)";
 		int ritorno = jdbcTemplate.update(sql, new Object[] { u.getUsername(), u.getPassword(),u.getNome(), u.getCognome(), u.getRuolo().getCodiceRuolo()});
@@ -103,4 +104,48 @@ public boolean insert(Utente u) {
 		
 		
 	}
+
+	
+	public boolean update(Utente u){
+		
+		StringBuilder sb = new StringBuilder();
+		List<Object> list = new ArrayList<Object>();
+		
+		sb.append("UPDATE utenti SET ");
+		if(u.getUsername()!=null){
+			sb.append(" username=? ,");
+			list.add(u.getUsername());
+		}
+		if(u.getNome()!=null){
+			sb.append(" nome=? ,");
+			list.add(u.getNome());
+		}
+		if(u.getCognome()!=null){
+			sb.append(" cognome=? ,");
+			list.add(u.getCognome());
+		}
+		if(u.getRuolo()!=null && u.getRuolo().getCodiceRuolo()!=0 ){
+			sb.append(" codice_ruolo=? ,");
+			list.add(u.getRuolo().getCodiceRuolo());
+		}
+		if(u.getCreditoResiduo()!=0){
+			sb.append(" credito_residuo=? ,");
+			list.add(u.getCreditoResiduo());
+		}
+		
+		sb.deleteCharAt(sb.indexOf(","));
+		sb.append(" WHERE codice_utente=?");
+		list.add(u.getCodiceUtente());
+		
+		
+		int ritorno = jdbcTemplate.update(sb.toString(),list.toArray());
+		
+		if(ritorno>=0){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
 }

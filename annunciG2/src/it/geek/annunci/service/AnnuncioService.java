@@ -5,6 +5,7 @@ import it.geek.annunci.model.Prodotto;
 import it.geek.annunci.model.Utente;
 import it.geek.annunci.dao.AnnuncioDao;
 import it.geek.annunci.dao.ProdottoDao;
+import it.geek.annunci.dao.UtenteDao;
 
 import java.util.List;
 
@@ -19,7 +20,11 @@ public class AnnuncioService implements AnnuncioServiceInterface {
 	
 	private ProdottoDao prodottoDao;
 	private AnnuncioDao annuncioDao;
+	private UtenteDao utenteDao;
 	
+	public void setUtenteDao(UtenteDao utenteDao){
+		this.utenteDao=utenteDao;
+	}
 	
 	public void setProdottoDao(ProdottoDao prodottoDao){
 		this.prodottoDao=prodottoDao;
@@ -77,33 +82,44 @@ public class AnnuncioService implements AnnuncioServiceInterface {
 			log.info("Sono in buyAndUpdate!");
 			
 			
-			p.setAcquirente(u);
+			int prezzoProdotto = p.getPrezzo();
+			int creditoUtente =u.getCreditoResiduo();
 			
-			if(p.getDataAcquisto()==null){
-				
-				java.util.Date dataAcq = new java.util.Date();
-				p.setDataAcquisto(dataAcq);
-				log.info("Update data Acquisto eseguita!");
+			if(prezzoProdotto>creditoUtente){
+				throw new RuntimeException();
 			}
-			
-			boolean ret = prodottoDao.update(p);
-			
-			if(ret == true){
+			else{
 				
-				log.info("Chiudo l'annuncio!");
-				a.setStato(false);
-			    modificato=annuncioDao.update(a);
+				p.setAcquirente(u);
+				
+				if(p.getDataAcquisto()==null){
+					
+					java.util.Date dataAcq = new java.util.Date();
+					p.setDataAcquisto(dataAcq);
+					log.info("Update data Acquisto eseguita!");
+				}
+				
+				boolean ret = prodottoDao.update(p);
+				
+				creditoUtente = creditoUtente-prezzoProdotto;
+				u.setCreditoResiduo(creditoUtente);
+				
+				boolean aggiornaCredito = utenteDao.update(u);
+				
+				if(ret == true && aggiornaCredito==true){
+					
+					log.info("Chiudo l'annuncio!");
+					a.setStato(false);
+				    modificato=annuncioDao.update(a);
+					
+					
+				}
 				
 				
-			}
-			
-			
+			}	
+
 		}
-		if(modificato==true){
-			return true;
-		}else{
-			return false;
-		}
+		return modificato;
 		
 	}
 	
