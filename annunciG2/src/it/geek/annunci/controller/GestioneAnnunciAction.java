@@ -84,7 +84,8 @@ public class GestioneAnnunciAction extends DispatchAction{
 	public ActionForward compra(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response)throws Exception{
 		
-
+		
+		String forwardPath="";
 		
 		java.util.Date defaultValue = null;
 		DateConverter dateConverter = new DateConverter(defaultValue); 
@@ -94,24 +95,36 @@ public class GestioneAnnunciAction extends DispatchAction{
 		HttpSession session = request.getSession();
 		
 		Utente ut = (Utente)session.getAttribute("utenteSession");
+		
+		if(ut == null){
+			
+			forwardPath="login";
+			
+			return mapping.findForward(forwardPath);
+			
+		}else{
+			
+			Utente ret = ServiceFactory.getUtenteService().get(ut);
+			
+			request.setAttribute("utente",ret);
+			
+			AnnunciForm af = (AnnunciForm) form;
+			Annuncio a = new Annuncio();
+			BeanUtils.copyProperties(a, af);
+			int codiceAnnuncio = a.getCodiceAnnuncio();
+			
+			
+			Annuncio aRet = ServiceFactory.getAnnuncioService().get(codiceAnnuncio);
+			
+			request.setAttribute("annuncio",aRet);
+			
+			forwardPath="finalizza";
+			
+			return mapping.findForward(forwardPath);
+			
+		}
 	
-		Utente ret = ServiceFactory.getUtenteService().get(ut);
 		
-		request.setAttribute("utente",ret);
-		
-		AnnunciForm af = (AnnunciForm) form;
-		Annuncio a = new Annuncio();
-		BeanUtils.copyProperties(a, af);
-		int codiceAnnuncio = a.getCodiceAnnuncio();
-		
-		
-		Annuncio aRet = ServiceFactory.getAnnuncioService().get(codiceAnnuncio);
-		
-		request.setAttribute("annuncio",aRet);
-		
-		forwardPath="finalizza";
-		
-		return mapping.findForward(forwardPath);
 		
 	}	
 	

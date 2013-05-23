@@ -34,6 +34,7 @@
 				<forward name="private" path="/myPage.jsp"/>
 				<forward name="finalizza" path="/finalizza.jsp"/>
 				<forward name="success" path="/myPage.jsp"/>
+				<forward name="login" path="/login.jsp"/>
 		</action>
 		
 		<action path="/gestioneUtente"

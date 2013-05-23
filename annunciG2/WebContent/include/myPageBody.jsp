@@ -6,15 +6,22 @@
 		
 		
 		
+		<table>		
 		
 		<c:if test="${listProdotti ne null}">
 			<h3>Ecco la lista dei tuoi acquisti!</h3>
+			
+			<tr>
+				<td>Codice Prodotto</td>
+				<td>Descrizione</td>
+				<td>Data acquisto</td>
+			</tr>	
 				<logic:iterate name="listProdotti" id="prodotto">
-					
-					<bean:write name="prodotto" property="codiceProdotto"/>
-					<bean:write name="prodotto" property="descrizione"/>
-					<bean:write name="prodotto" property="dataAcquisto"/>
-
+			<tr>		
+				<td><bean:write name="prodotto" property="codiceProdotto"/></td>
+				<td><bean:write name="prodotto" property="descrizione"/></td>
+				<td><bean:write name="prodotto" property="dataAcquistoFormatted"/></td>
+			</tr>
 				</logic:iterate>
 		
 		</c:if>
@@ -25,5 +32,5 @@
 		</c:if>
 
 		
-
+	</table>
 </center>

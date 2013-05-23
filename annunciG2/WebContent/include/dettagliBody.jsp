@@ -6,11 +6,14 @@
 <center>
 	
 		<html:form method="POST" action="gestioneAnnunci.do">
-			<html:hidden property="method" value="compra"/>
+			
 			<html:hidden property="codiceAnnuncio" value="${annuncio.codiceAnnuncio}"/>	
-		
+			<html:hidden property="method" value="compra"/>
 			<table border="2">
 			
+			<c:if test="${annuncio.stato eq false }">
+			<h3>Annuncio chiuso!</h3>
+			</c:if>			
 				<tr>
 					<td>Data Inserimento</td>
 					<td>Dettagli</td>
@@ -36,15 +39,12 @@
 						<td>${annuncio.categoria.descrizione}</td>
 						<td>${annuncio.prodotto.descrizione}</td>
 						<td>${annuncio.utente.username }</td>
-						<c:if test="${annuncio.stato eq true and utenteSession ne null }">
-							<td><html:submit value="Buy!"></html:submit></td>
-						</c:if>
-						<c:if test="${annuncio.stato eq false }">
-							<td>Prodotto non più in vendita!</td>
-						</c:if>
-						<c:if test="${utenteSession eq null}">
-							<td>Devi essere loggato per comprare! </td>
-						</c:if>	
+						
+							
+					
+						
+						<td><html:submit value="Buy!"></html:submit></td>
+		
 					</tr>
 			</table>
 		</html:form>

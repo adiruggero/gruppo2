@@ -1,5 +1,6 @@
 package it.geek.annunci.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.io.Serializable;
@@ -51,6 +52,21 @@ public class Prodotto implements Serializable {
 	public void setDataAcquisto(Date dataAcquisto) {
 		this.dataAcquisto = dataAcquisto;
 	}
+	public String getDataAcquistoFormatted(){
+		String data="";
+		if(dataAcquisto!=null){
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			data = sdf.format(dataAcquisto);
+		}
+		return data;
+	}
+	
+	
+	
+	
+	
+	
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
