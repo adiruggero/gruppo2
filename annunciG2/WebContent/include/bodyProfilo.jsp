@@ -26,7 +26,7 @@ RUOLO:&nbsp;${utenteSession.ruolo.descrizione}<br>
 			<tr><td>Username:</td><td><html:text property="username"/></td></tr>
 			<tr><td>Password:</td><td><html:text property="password"/></td></tr>
 		</table>
-		<html:button  property="button">invia</html:button>
+		<html:submit>invia</html:submit>
 	</html:form>
 
 

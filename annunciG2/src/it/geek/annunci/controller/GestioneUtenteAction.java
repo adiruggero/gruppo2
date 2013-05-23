@@ -4,7 +4,9 @@ package it.geek.annunci.controller;
 import java.util.List;
 
 import it.geek.annunci.factory.ServiceFactory;
+import it.geek.annunci.form.AnnunciForm;
 import it.geek.annunci.form.UtentiForm;
+import it.geek.annunci.model.Annuncio;
 import it.geek.annunci.model.Prodotto;
 import it.geek.annunci.model.Utente;
 
@@ -17,7 +19,6 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
-import org.omg.CORBA.Request;
 import org.springframework.beans.BeanUtils;
 
 public class GestioneUtenteAction extends DispatchAction{
@@ -164,4 +165,23 @@ public class GestioneUtenteAction extends DispatchAction{
 		
 	}
 	
+	public ActionForward eseguiModifica(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
+		
+		UtentiForm af =(UtentiForm)form;
+		Utente u = new Utente();
+		
+		BeanUtils.copyProperties(u,af);
+	
+		Utente ret = ServiceFactory.getUtenteService().getAndUpdate(u);
+		request.setAttribute("utente",ret);
+		
+		String forwardPath="";
+		forwardPath="modificaEffettuata";
+		
+		return mapping.findForward(forwardPath);
+		
+		
+	}
 }
