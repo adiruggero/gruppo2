@@ -104,6 +104,8 @@ public class AnnuncioService implements AnnuncioServiceInterface {
 				creditoUtente = creditoUtente-prezzoProdotto;
 				u.setCreditoResiduo(creditoUtente);
 				
+				log.debug(u.getCreditoResiduo());
+				
 				boolean aggiornaCredito = utenteDao.update(u);
 				
 				if(ret == true && aggiornaCredito==true){

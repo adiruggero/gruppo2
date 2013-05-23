@@ -155,9 +155,12 @@ public class GestioneUtenteAction extends DispatchAction{
 		
 		int utentiOnline = Utente.getUtentiOnline();
 		utentiOnline--;
+		if(utentiOnline<0){
+			Utente.setUtentiOnline(0);
+		}
 		Utente.setUtentiOnline(utentiOnline);
-		
-		return mapping.findForward("home.jsp");
+		String forwardPath="home";
+		return mapping.findForward(forwardPath);
 		
 	}
 	
