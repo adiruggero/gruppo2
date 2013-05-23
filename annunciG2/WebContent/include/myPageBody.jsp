@@ -5,7 +5,14 @@
 <center>
 		
 		
+	I MIEI ANNUNCI - clicca <a href="gestioneUtente.do?method=visualizzaAnnunci">qui</a><br>
+	IL MIO PROFILO - clicca <a href="gestioneUtente.do?method=visualizzaProfilo">qui</a><br>
+		<br>
 		
+		<c:if test="${utenteSession.ruolo.descrizione eq 'Amministratore'}">
+			GESTIONE UTENTI - clicca <a href="gestioneUtente.do?method=registrazione">qui</a><br>
+		
+		</c:if>
 		<table>		
 		
 		<c:if test="${listProdotti ne null}">

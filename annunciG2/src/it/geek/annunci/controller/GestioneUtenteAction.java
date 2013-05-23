@@ -126,4 +126,24 @@ public class GestioneUtenteAction extends DispatchAction{
 		}
 		
 	}
+	
+	public ActionForward visualizzaAnnunci(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
+		
+		String forwardPath ="visualizzaAnnunci";
+		return mapping.findForward(forwardPath);			
+				
+				
+		}
+	
+	public ActionForward visualizzaProfilo(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
+		
+		String forwardPath ="visualizzaProfilo";
+		return mapping.findForward(forwardPath);			
+				
+				
+		}
 }

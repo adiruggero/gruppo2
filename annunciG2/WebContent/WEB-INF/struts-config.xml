@@ -48,6 +48,9 @@
 				<forward name="paginaUtente" path="/myPage.jsp"/>
 				<forward name="registrazione" path="/registrazione.jsp"/>
 				<forward name="failure" path="/error.jsp"/>
+				<forward name="visualizzaAnnunci" path="/visualizzaAnnunci.jsp"/>
+				<forward name="visualizzaProfilo" path="/visualizzaProfilo.jsp"/>
+				<forward name="home" path="/home.jsp"/>
 		</action>
 		
 		
