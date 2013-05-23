@@ -45,7 +45,6 @@
 						</c:if>
 						<td>${annuncio.categoria.descrizione}</td>
 						<td>${annuncio.prodotto.descrizione}</td>
-						<td>${annuncio.prodotto.codiceProdotto }</td>dsaòdjòf
 						<td>${annuncio.utente.username }</td>
 						<c:if test="${annuncio.stato eq true }">
 							<td><html:submit value="Finalizza!"></html:submit></td>

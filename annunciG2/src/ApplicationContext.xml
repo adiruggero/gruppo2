@@ -78,12 +78,12 @@
 	<property name="dataSource" ref="dataSource"/>
 </bean>
 
-<!-- 
-<tx:advice id="residenzaTxAdvice"
-	transaction-manager="residenzaTxManager">
+
+<tx:advice id="annunciTxAdvice"
+	transaction-manager="annunciTxManager">
 		
 	<tx:attributes>
-		<tx:method name="*Multiplo" rollback-for="RuntimeException"
+		<tx:method name="*Update" rollback-for="RuntimeException"
 				propagation="REQUIRED"/>
 		<tx:method name="get" read-only="true"/>		
 	</tx:attributes>
@@ -91,20 +91,20 @@
 
 	<aop:config>
 	
-		<aop:pointcut id="residenzaMethods"
-				expression="execution(* it.geek.residenzaSpring.service.*Interface.*(..))"/>
+		<aop:pointcut id="annunciMethods"
+				expression="execution(* it.geek.annunci.service.*Interface.*(..))"/>
 		
-		<aop:advisor advice-ref="residenzaTxAdvice"
-				pointcut-ref="residenzaMethods"/>				
+		<aop:advisor advice-ref="annunciTxAdvice"
+				pointcut-ref="annunciMethods"/>				
 	
 	</aop:config>
 
-	<bean id="residenzaTxManager"
+	<bean id="annunciTxManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
--->
+
 
 
 </beans>

@@ -18,11 +18,6 @@ public class UtenteService implements UtenteServiceInterface{
 		if(u != null){
 			
 			utRet = utenteDao.findByWhere(u);
-			if(utRet!=null){
-				int online = Utente.getUtentiOnline();
-				online ++;
-				Utente.setUtentiOnline(online);
-			}
 		}
 		
 		return utRet;
