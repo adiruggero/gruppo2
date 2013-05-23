@@ -6,7 +6,40 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Registrite!</title>
+<script type="text/javascript">
+
+function controllaCampi(){
+	var nomeVal = document.forms['utentiForm'].nome.value;
+	
+	if(nomeVal==""){
+		alert("A me risulta che tutti hanno un nome, il campo nome è vuoto!!!");
+		return false;
+	}
+	var cognomeVal = document.forms['utentiForm'].cognome.value;
+	if(cognomeVal==""){
+		alert("A me risulta che tutti hanno un cognome, il campo cognome è vuoto!!!");
+		return false;
+	}
+	var userVal = document.forms['utentiForm'].username.value;
+	if(userVal==""){
+		alert("devi avere un username se vuoi registrarti!");
+		return false;
+	}
+	
+	var passVal = document.forms['utentiForm'].password.value;
+	if(passVal==""){
+		alert("e la password quando la mettiamo?");
+		return false;
+	}
+	document.forms['utentiForm'].submit();
+}
+
+
+
+
+
+</script>
 </head>
 <body>
 <center>
@@ -28,7 +61,7 @@
 			</tr>
 			<tr><td>Password:</td><td><html:text property="password"/></td></tr>
 		</table>
-		<html:submit>invia</html:submit>
+		<html:button onclick="controllaCampi();" property="button">invia</html:button>
 	</html:form>
 </center>
 </body>
