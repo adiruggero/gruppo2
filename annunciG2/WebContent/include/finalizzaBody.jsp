@@ -8,6 +8,7 @@
 	<html:form method="POST" action="gestioneAnnunci.do">	
 		<html:hidden property="method" value="finalizza"/>	
 		<html:hidden property="codiceAnnuncio" value="${annuncio.codiceAnnuncio }"/>
+		 
 		<table>
 		<tr><td><h3>Dettagli utente:</h3> </td></tr>
 				<tr><td>Username: </td><td>${utenteSession.username}</td></tr>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.geek.annunci.model.Prodotto;
 import org.apache.log4j.Logger;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class ProdottoDao implements ProdottoDaoInterface {
@@ -96,5 +97,22 @@ public class ProdottoDao implements ProdottoDaoInterface {
 		
 		
 	}
-
+	
+	public Prodotto findById(int codice){
+		
+		Prodotto p = null;
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT p.codice_prodotto AS codice_prodotto,p.descrizione AS descrizione,p.prezzo AS prezzo,p.data_acquisto AS data_acquisto,u.codice_utente AS codice_utente");
+		sb.append(" FROM utenti u RIGHT OUTER JOIN prodotti p ON u.codice_utente=p.acquirente ");
+		sb.append(" WHERE p.codice_prodotto=?");
+		try{
+			p = jdbcTemplate.queryForObject(sb.toString(),new Object[]{codice},new ProdottoRowMapper());
+		}catch(EmptyResultDataAccessException e){
+			e.printStackTrace();
+		}
+		return p;
+		
+		
+	}
 }

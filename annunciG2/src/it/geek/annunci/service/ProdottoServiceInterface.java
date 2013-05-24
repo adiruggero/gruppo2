@@ -7,5 +7,6 @@ import java.util.List;
 public interface ProdottoServiceInterface {
 
 	public List<Prodotto> getByWhere(Prodotto p);
-
+	
+	public Prodotto getById(int codice);
 }

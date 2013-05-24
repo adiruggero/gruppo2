@@ -4,8 +4,11 @@ import it.geek.annunci.model.Annuncio;
 import it.geek.annunci.model.Prodotto;
 import it.geek.annunci.model.Utente;
 import it.geek.annunci.dao.AnnuncioDao;
+import it.geek.annunci.dao.AnnuncioDaoInterface;
 import it.geek.annunci.dao.ProdottoDao;
+import it.geek.annunci.dao.ProdottoDaoInterface;
 import it.geek.annunci.dao.UtenteDao;
+import it.geek.annunci.dao.UtenteDaoInterface;
 
 import java.util.List;
 
@@ -18,18 +21,18 @@ public class AnnuncioService implements AnnuncioServiceInterface {
 	
 	private static Logger log = Logger.getLogger(AnnuncioService.class);
 	
-	private ProdottoDao prodottoDao;
-	private AnnuncioDao annuncioDao;
-	private UtenteDao utenteDao;
+	private ProdottoDaoInterface prodottoDao;
+	private AnnuncioDaoInterface annuncioDao;
+	private UtenteDaoInterface utenteDao;
 	
-	public void setUtenteDao(UtenteDao utenteDao){
+	public void setUtenteDao(UtenteDaoInterface utenteDao){
 		this.utenteDao=utenteDao;
 	}
 	
-	public void setProdottoDao(ProdottoDao prodottoDao){
+	public void setProdottoDao(ProdottoDaoInterface prodottoDao){
 		this.prodottoDao=prodottoDao;
 	}
-	public void setAnnuncioDao(AnnuncioDao annuncioDao){
+	public void setAnnuncioDao(AnnuncioDaoInterface annuncioDao){
 		this.annuncioDao=annuncioDao;
 	}
 
@@ -84,6 +87,8 @@ public class AnnuncioService implements AnnuncioServiceInterface {
 			
 			int prezzoProdotto = p.getPrezzo();
 			int creditoUtente =u.getCreditoResiduo();
+			
+			log.debug(prezzoProdotto);
 			
 			if(prezzoProdotto>creditoUtente){
 				throw new RuntimeException();

@@ -1,6 +1,7 @@
 package it.geek.annunci.service;
 
 import it.geek.annunci.dao.ProdottoDao;
+import it.geek.annunci.dao.ProdottoDaoInterface;
 import it.geek.annunci.model.Prodotto;
 
 import java.util.List;
@@ -11,9 +12,9 @@ public class ProdottoService implements ProdottoServiceInterface {
 	
 	private static Logger log = Logger.getLogger(ProdottoService.class);
 	
-	private ProdottoDao prodottoDao;
+	private ProdottoDaoInterface prodottoDao;
 	
-	public void setProdottoDao(ProdottoDao prodottoDao){
+	public void setProdottoDao(ProdottoDaoInterface prodottoDao){
 		this.prodottoDao = prodottoDao;
 	}
 
@@ -36,6 +37,13 @@ public class ProdottoService implements ProdottoServiceInterface {
 		
 	}
 	
-	
+	public Prodotto getById(int codice){
+		
+		Prodotto p = null;
+			
+		p = prodottoDao.findById(codice);
+		
+		return p;
+	}
 
 }

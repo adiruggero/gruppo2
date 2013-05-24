@@ -104,9 +104,6 @@ public class GestioneAnnunciAction extends DispatchAction{
 			
 		}else{
 			
-			Utente ret = ServiceFactory.getUtenteService().get(ut);
-			
-			request.setAttribute("utente",ret);
 			
 			AnnunciForm af = (AnnunciForm) form;
 			Annuncio a = new Annuncio();
@@ -139,29 +136,29 @@ public class GestioneAnnunciAction extends DispatchAction{
 		HttpSession session = request.getSession();
 		Utente ut = (Utente) session.getAttribute("utenteSession");
 		
-		Utente ret = ServiceFactory.getUtenteService().get(ut);
+		
 		
 		AnnunciForm af = (AnnunciForm) form;
-		Annuncio a = new Annuncio();
-		BeanUtils.copyProperties(a,af);
 		
-		int codiceAnnuncio = a.getCodiceAnnuncio();
+		
+		int codiceAnnuncio = af.getCodiceAnnuncio();
 		
 		Annuncio aRet = ServiceFactory.getAnnuncioService().get(codiceAnnuncio);
 		
-		Prodotto p = new Prodotto();
+		int codice = aRet.getProdotto().getCodiceProdotto();
 		
-		int codiceProdotto = aRet.getProdotto().getCodiceProdotto();
+		log.debug(codice);
 		
-		p.setCodiceProdotto(codiceProdotto);
+		
+		Prodotto p = ServiceFactory.getProdottoService().getById(codice);
 		
 		
 		try{
-			boolean comprato = ServiceFactory.getAnnuncioService().buyAndUpdate(aRet,p,ret);
+			boolean comprato = ServiceFactory.getAnnuncioService().buyAndUpdate(aRet,p,ut);
 			if(comprato){
 				
 				Prodotto prodUtente = new Prodotto();
-				prodUtente.setAcquirente(ret);
+				prodUtente.setAcquirente(ut);
 				
 				List<Prodotto> list = ServiceFactory.getProdottoService().getByWhere(prodUtente);
 				

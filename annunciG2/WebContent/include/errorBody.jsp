@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-ERRORE!
+ERRORE! ${message}
 </body>
 </html>

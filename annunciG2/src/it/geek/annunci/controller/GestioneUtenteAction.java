@@ -69,14 +69,25 @@ public class GestioneUtenteAction extends DispatchAction{
 		
 		BeanUtils.copyProperties(uf,u);
 		
-		Utente utenteLog = ServiceFactory.getUtenteService().get(u);
+		List<Utente> utenti = ServiceFactory.getUtenteService().get(u);
 		
-		if(utenteLog!=null){
+		if(utenti==null || utenti.isEmpty()){
+			forwardPath="failure";
+			request.setAttribute("message","Impossibile trovare utente");
+			
+		
+		}else if(utenti.size()>1){
+			forwardPath="failure";
+			request.setAttribute("message","Database non disponibile momentaneamente..");
+			
+		}else{
 			HttpSession session = request.getSession();
-			session.setAttribute("utenteSession",utenteLog);
+			Utente.incrementaUtentiOnline();
+			session.setAttribute("utenteSession",utenti.get(0));
 			
 			Prodotto p = new Prodotto();
-			p.setAcquirente(u);
+			
+			p.setAcquirente(utenti.get(0));
 			
 			List<Prodotto> listProdotti = ServiceFactory.getProdottoService().getByWhere(p);
 			
@@ -84,6 +95,7 @@ public class GestioneUtenteAction extends DispatchAction{
 			
 			forwardPath="paginaUtente";
 		}
+		
 		return mapping.findForward(forwardPath);
 		
 		
@@ -151,14 +163,11 @@ public class GestioneUtenteAction extends DispatchAction{
 			throws Exception{
 		
 		HttpSession session = request.getSession();
+		session.removeAttribute("utenteSession");
+		Utente.decrementaUtentiOnline();
+	
 		session.invalidate();
-		
-		int utentiOnline = Utente.getUtentiOnline();
-		utentiOnline--;
-		if(utentiOnline<0){
-			Utente.setUtentiOnline(0);
-		}
-		Utente.setUtentiOnline(utentiOnline);
+	
 		String forwardPath="home";
 		return mapping.findForward(forwardPath);
 		

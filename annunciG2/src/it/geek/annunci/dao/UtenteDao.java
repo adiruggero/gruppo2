@@ -17,12 +17,12 @@ public class UtenteDao implements UtenteDaoInterface {
 		this.jdbcTemplate=jdbcTemplate;
 	}
 
-	public Utente findByWhere(Utente u){
+	public List<Utente> findByWhere(Utente u){
 		
 		List<Object> list = new Vector<Object>();
 		
 		StringBuilder sb = new StringBuilder();
-		Utente utenteRet = null;
+
 		
 		sb.append("SELECT u.codice_utente,u.username,u.password,u.nome,u.cognome,r.codice_ruolo,u.stato,u.credito_residuo,r.descrizione");
 		sb.append(" FROM utenti u, ruoli r");
@@ -67,11 +67,10 @@ public class UtenteDao implements UtenteDaoInterface {
 			list.add(u.getCreditoResiduo());
 		}
 		sb.delete(sb.length()-4, sb.length());
-		try{
-			utenteRet = jdbcTemplate.queryForObject(sb.toString(),list.toArray(),new UtenteRowMapper()); 
-		}catch(EmptyResultDataAccessException e){
-		}
-		return utenteRet;
+		
+		return  jdbcTemplate.query(sb.toString(),list.toArray(),new UtenteRowMapper()); 
+		
+	
 		
 	}
 	
@@ -133,7 +132,7 @@ public class UtenteDao implements UtenteDaoInterface {
 			list.add(u.getCreditoResiduo());
 		}
 		
-		sb.deleteCharAt(sb.indexOf(","));
+		sb.deleteCharAt(sb.lastIndexOf(","));
 		sb.append(" WHERE codice_utente=?");
 		list.add(u.getCodiceUtente());
 		

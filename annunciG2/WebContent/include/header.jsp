@@ -3,7 +3,8 @@
 <center>
 		
 		<h3>Benvenuto</h3>
-		<h4>Ci sono <%=Utente.getUtentiOnline()%> utenti online!</h4>
+		
+		<h4>Ci sono <%=Utente.utentiOnline%> utenti online!</h4>
 		<c:if test="${utenteSession eq null}">
 			<h3> Non sei loggato</h3>
 		</c:if>

@@ -1,5 +1,7 @@
 package it.geek.annunci.service;
 
+import java.util.List;
+
 import it.geek.annunci.dao.UtenteDao;
 import it.geek.annunci.model.Utente;
 
@@ -11,9 +13,9 @@ public class UtenteService implements UtenteServiceInterface{
 		this.utenteDao=utenteDao;
 	}
 	
-	public Utente get(Utente u){
+	public List<Utente> get(Utente u){
 		
-		Utente utRet = null;
+		List<Utente> utRet = null;
 		
 		if(u != null){
 			
