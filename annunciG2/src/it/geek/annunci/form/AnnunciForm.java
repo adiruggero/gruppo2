@@ -2,6 +2,7 @@ package it.geek.annunci.form;
 
 import org.apache.struts.action.ActionForm;
 import it.geek.annunci.factory.ServiceFactory;
+import it.geek.annunci.model.Annuncio;
 import it.geek.annunci.model.Categoria;
 import it.geek.annunci.model.Prodotto;
 import it.geek.annunci.model.Utente;
@@ -10,7 +11,7 @@ import java.util.List;
 import org.apache.struts.util.LabelValueBean;
 
 public class AnnunciForm extends ActionForm{
-	
+
 	
 	private List<LabelValueBean> listCategoria;
 	private String dataInserimento;
@@ -24,8 +25,23 @@ public class AnnunciForm extends ActionForm{
 	private Utente utente = new Utente();
 	private String method;
 	
+	private List<Annuncio> listaMaggioriVisualizzazioni;
 	
+	/**
+	 * @return the listaMaggioriVisualizzazioni
+	 */
+	public List<Annuncio> getListaMaggioriVisualizzazioni() {
+		this.listaMaggioriVisualizzazioni=ServiceFactory.getAnnuncioService().findView();
+		return listaMaggioriVisualizzazioni;
+	}
 
+	/**
+	 * @param listaMaggioriVisualizzazioni the listaMaggioriVisualizzazioni to set
+	 */
+	public void setListaMaggioriVisualizzazioni(
+			List<Annuncio> listaMaggioriVisualizzazioni) {
+		this.listaMaggioriVisualizzazioni = listaMaggioriVisualizzazioni;
+	}
 
 	public int getVisite() {
 		return visite;
@@ -111,8 +127,11 @@ public class AnnunciForm extends ActionForm{
 				+ ", descrizione=" + descrizione + ", stato=" + stato
 				+ ", codiceAnnuncio=" + codiceAnnuncio + ", visite=" + visite
 				+ ", categoria=" + categoria + ", prodotto=" + prodotto
-				+ ", utente=" + utente + ", method=" + method + "]";
+				+ ", utente=" + utente + ", method=" + method
+				+ ", listaMaggioriVisualizzazioni="
+				+ listaMaggioriVisualizzazioni + "]";
 	}
+
 	
 	
 	

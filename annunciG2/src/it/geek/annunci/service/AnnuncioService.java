@@ -144,15 +144,7 @@ public class AnnuncioService implements AnnuncioServiceInterface {
 		
 		List<Annuncio> listAnnunci = annuncioDao.findForView();
 		
-		if(listAnnunci!=null){
-			
-			return listAnnunci;
-			
-		}else{
-			
-			return null;
-			
-		}
+		return listAnnunci;
 		
 	}
 	
