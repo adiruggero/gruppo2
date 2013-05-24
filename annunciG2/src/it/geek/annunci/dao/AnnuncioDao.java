@@ -1,5 +1,6 @@
 package it.geek.annunci.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -142,4 +143,48 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		
 		return u;
 	}
+
+	public List<Annuncio> findForView(){
+		
+		
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("SELECT descrizione,visite");
+		sb.append(" FROM annunci");
+		sb.append(" ORDER BY visite desc");
+		
+		List<Annuncio> listAnnunci = jdbcTemplate.query(sb.toString(),new AnnuncioRowMapper());
+		
+		return listAnnunci;
+		
+	}
+	
+	public boolean insert(Annuncio a){
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("INSERT INTO annunci(descrizione,codice_categoria,codice_prodotto,codice_utente)");
+		sb.append(" VALUES(?,?,?,?");
+		
+		List<Object> list = new ArrayList<Object>();
+		
+		list.add(a.getDescrizione());
+		list.add(a.getCategoria().getCodiceCategoria());
+		list.add(a.getProdotto().getCodiceProdotto());
+		list.add(a.getUtente().getCodiceUtente());
+		
+		int ritorno = jdbcTemplate.update(sb.toString(),list.toArray());
+		
+		if(ritorno>=0){
+			
+			return true;
+			
+		}else{
+			
+			return false;
+			
+		}
+		
+	}
+	
 }

@@ -8,5 +8,7 @@ public interface AnnuncioDaoInterface {
 	public List<Annuncio> findByWhere(Annuncio a);
 	public boolean update(Annuncio a);
 	public Annuncio findById(int id);
+	public List<Annuncio> findForView();
+	public boolean insert(Annuncio a);
 	
 }

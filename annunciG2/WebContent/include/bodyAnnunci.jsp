@@ -1,12 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-questa è una pagina fighetta sugli annunci
-</body>
-</html>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+
+<center>
+		
+		<html:form method="POST" action="gestioneAnnunci.do">
+			
+			<table>
+					<tr><td>Prodotto</td></tr>
+					
+					<tr>
+						<td>Descrizione prodotto</td>
+						<td><html:text property="prodotto.descrizione"/></td>
+					</tr>
+					<tr>
+						<td>Prezzo prodotto</td>
+						<td><html:text property="prodotto.prezzo"/></td>
+					</tr>
+					
+					<tr><td>Annuncio</td></tr>
+					
+					<tr>
+						<td>Descrizione Annuncio</td>
+						<td><html:text property="descrizione"/></td>
+					</tr>
+					<tr>	
+						<td>Categoria</td>
+						<td><html:select name="annunciForm" property="categoria.codiceCategoria">
+							<html:optionsCollection name = "annunciForm" property = "listCategoria"/>
+							</html:select>
+						</td>
+					</tr>
+					
+					<tr><td><html:submit value="Inserisci annuncio"/></td></tr>
+					<html:hidden property="method" value="inserisciAnnuncio"/>
+			</table>
+				
+				
+		
+		
+		
+		
+		
+		</html:form>
+</center>

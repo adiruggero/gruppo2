@@ -1,3 +1,4 @@
+
 package it.geek.annunci.service;
 
 import it.geek.annunci.model.Annuncio;
@@ -138,4 +139,60 @@ public class AnnuncioService implements AnnuncioServiceInterface {
 		
 		return a;
 	}
+	
+	public List<Annuncio> findView(){
+		
+		List<Annuncio> listAnnunci = annuncioDao.findForView();
+		
+		if(listAnnunci!=null){
+			
+			return listAnnunci;
+			
+		}else{
+			
+			return null;
+			
+		}
+		
+	}
+	
+	public boolean insertAndUpdate(Annuncio a,Prodotto p,Utente u){
+		
+		boolean annuncioInserito=false;
+		
+		p.setDescrizione(a.getProdotto().getDescrizione());
+		p.setPrezzo(a.getProdotto().getPrezzo());
+		
+		boolean inserito = prodottoDao.insert(p);
+		
+		if(inserito==true){
+			
+			List<Prodotto> listProd = prodottoDao.findByWhere(p);
+			
+			if(listProd == null || listProd.isEmpty()){
+				
+				log.error("Errore! Prodotto non trovato!");
+			
+			}else if(listProd.size()>1){
+				
+				log.error("Attenzione! Prodotto non trovato");
+				
+			}else{
+				
+				Prodotto pForAnnuncio = listProd.get(0);
+				a.setProdotto(pForAnnuncio);
+				a.setUtente(u);
+				
+				annuncioInserito = annuncioDao.insert(a);
+				
+			}
+			
+		}else{
+			return false;
+		}
+		
+		return annuncioInserito;
+		
+	}
+	
 }	

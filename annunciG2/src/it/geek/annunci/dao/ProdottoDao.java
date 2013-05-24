@@ -115,4 +115,25 @@ public class ProdottoDao implements ProdottoDaoInterface {
 		
 		
 	}
+
+	public boolean insert(Prodotto p){
+		
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("INSERT INTO prodotti(descrizione,prezzo)");
+		sb.append(" VALUES(?,?)");
+		
+		List<Object> list = new ArrayList<Object>();
+		list.add(p.getDescrizione());
+		list.add(p.getPrezzo());
+		
+		int ritorno = jdbcTemplate.update(sb.toString(),list.toArray());
+		
+		if(ritorno>=0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 }

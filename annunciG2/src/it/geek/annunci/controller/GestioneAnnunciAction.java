@@ -183,5 +183,49 @@ public class GestioneAnnunciAction extends DispatchAction{
 				
 		
 	}
+	
+	public ActionForward inserisciAnnuncio(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)throws Exception{
 		
+		java.util.Date defaultValue = null;
+		DateConverter dateConverter = new DateConverter(defaultValue); 
+		dateConverter.setPattern("dd/MM/yyyy");   
+		ConvertUtils.register(dateConverter, java.util.Date.class);
+		
+		String forwardPath="";
+		
+		AnnunciForm af = (AnnunciForm)form;
+		Annuncio a = new Annuncio();
+		BeanUtils.copyProperties(a,af);
+		
+		Prodotto p = new Prodotto();
+		
+		HttpSession session = request.getSession();
+		
+		Utente ut = (Utente) session.getAttribute("utenteSession");
+		
+		
+		boolean ret = ServiceFactory.getAnnuncioService().insertAndUpdate(a, p, ut);
+		
+		
+		if(ret == true){
+			
+			forwardPath="success";
+			
+			request.setAttribute("message","Annuncio inserito correttamente");
+		
+		}else{
+			
+			forwardPath="success";
+			
+			request.setAttribute("message","Annuncio non inserito");
+	
+		}
+		
+		return mapping.findForward(forwardPath);
+		
+		
+		
+	}
+	
 }

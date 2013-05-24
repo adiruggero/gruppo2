@@ -11,4 +11,7 @@ public interface AnnuncioServiceInterface {
 	public Annuncio getAndUpdate(Annuncio a);
 	public boolean buyAndUpdate(Annuncio a,Prodotto p,Utente u);
 	public Annuncio get(int codice);
+	public List<Annuncio> findView();
+	public boolean insertAndUpdate(Annuncio a,Prodotto p,Utente u);
+	
 }
