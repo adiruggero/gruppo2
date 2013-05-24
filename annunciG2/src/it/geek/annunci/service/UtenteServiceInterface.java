@@ -9,6 +9,7 @@ public interface UtenteServiceInterface {
 	public List<Utente> get (Utente u);
 	public boolean create(Utente u);
 	public Utente getId (int id);
+	public Utente getAndUpdate(Utente u);
 
 
 }

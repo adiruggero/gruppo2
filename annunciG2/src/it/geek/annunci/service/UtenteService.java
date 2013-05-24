@@ -3,6 +3,7 @@ package it.geek.annunci.service;
 import java.util.List;
 
 import it.geek.annunci.dao.UtenteDao;
+import it.geek.annunci.model.Annuncio;
 import it.geek.annunci.model.Utente;
 
 public class UtenteService implements UtenteServiceInterface{
@@ -44,4 +45,16 @@ public class UtenteService implements UtenteServiceInterface{
 		return ret;
 	}
 
+	public Utente getAndUpdate(Utente u){
+		
+		Utente ut = null;
+	
+		boolean ret = utenteDao.update(ut);
+		
+		
+		return ut;
+		
+		
+	}
+	
 }

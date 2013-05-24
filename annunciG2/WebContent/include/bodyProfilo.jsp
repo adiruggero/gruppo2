@@ -9,16 +9,15 @@
 </head>
 <body>
 <center>
-QUESTO E' IL TUO PROFILO, LE TUE CREDENZIALI SONO:<br>
-<br>
+<h4>QUESTO E' IL TUO PROFILO, LE TUE CREDENZIALI SONO:</h4><br>
 NOME:&nbsp;${utenteSession.nome}<br>
 COGNOME:&nbsp;${utenteSession.cognome}<br>
 USERNAME:&nbsp;${utenteSession.username}<br>
 PASSWORD:&nbsp;${utenteSession.password}<br>
 RUOLO:&nbsp;${utenteSession.ruolo.descrizione}<br>
 <br>
-SE VUOI MODIFICARE LE TUE CREDENZIALI, FALLO QUI:
-<br>
+<h4>SE VUOI MODIFICARE LE TUE CREDENZIALI, FALLO QUI:</h4><br>
+
 <html:form styleId="modificaUtentiForm" action="gestioneUtente.do">
 		<html:hidden property="method" value="eseguiModifica"/>
 		<table>
@@ -27,7 +26,7 @@ SE VUOI MODIFICARE LE TUE CREDENZIALI, FALLO QUI:
 			<tr><td>Username:</td><td><html:text property="username"/></td></tr>
 			<tr><td>Password:</td><td><html:text property="password"/></td></tr>
 		</table>
-		<html:button  property="button">invia</html:button>
+		<html:submit>invia</html:submit>
 	</html:form>
 
 
