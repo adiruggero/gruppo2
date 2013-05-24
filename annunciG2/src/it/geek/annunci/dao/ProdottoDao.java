@@ -26,8 +26,8 @@ public class ProdottoDao implements ProdottoDaoInterface {
 		List<Object> list = new ArrayList<Object>();
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT p.codice_prodotto,p.descrizione,p.prezzo,p.data_acquisto,u.codice_utente");
-		sb.append(" FROM utenti u,prodotti p");
-		sb.append(" WHERE u.codice_utente=p.acquirente AND");
+		sb.append(" FROM utenti u RIGHT OUTER JOIN prodotti p ON u.codice_utente=p.acquirente ");
+		sb.append(" WHERE 1=1 AND ");
 		if(p.getCodiceProdotto()!=0){
 			sb.append(" p.codice_prodotto=? AND");
 			list.add(p.getCodiceProdotto());

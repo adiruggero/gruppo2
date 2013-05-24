@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <center>
 		
+		${message}
 		
 	I MIEI ANNUNCI - clicca <a href="gestioneUtente.do?method=visualizzaAnnunci">qui</a><br>
 	IL MIO PROFILO - clicca <a href="gestioneUtente.do?method=visualizzaProfilo">qui</a><br>

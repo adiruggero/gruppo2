@@ -212,7 +212,18 @@ public class GestioneAnnunciAction extends DispatchAction{
 			
 			forwardPath="success";
 			
+			Prodotto prod = new Prodotto();
+			prod.setAcquirente(ut);
+			
+			
+			List<Prodotto> listaProdotti = ServiceFactory.getProdottoService().getByWhere(prod);
+			
+			request.setAttribute("listProdotti",listaProdotti);
+			
 			request.setAttribute("message","Annuncio inserito correttamente");
+			
+			
+			
 		
 		}else{
 			

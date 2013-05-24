@@ -164,7 +164,7 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("INSERT INTO annunci(descrizione,codice_categoria,codice_prodotto,codice_utente)");
-		sb.append(" VALUES(?,?,?,?");
+		sb.append(" VALUES(?,?,?,?)");
 		
 		List<Object> list = new ArrayList<Object>();
 		
