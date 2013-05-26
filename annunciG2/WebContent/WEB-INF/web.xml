@@ -11,7 +11,7 @@
 	
 
 	<welcome-file-list>
-			<welcome-file>home.jsp</welcome-file>
+			<welcome-file>welcomePage.jsp</welcome-file>
 	</welcome-file-list>
 
 	

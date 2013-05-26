@@ -12,6 +12,12 @@
 <title>Insert title here</title>
 </head>
 <base href="<%=basePath%>"/>
+		
+		<!-- import for BOOTSTRAP CSS and JS (minimal) -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>	
+	<!-- end import -->
+
 <body>
 		<table width="100%" height="600px" border="2">
 			<tr>

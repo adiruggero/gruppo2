@@ -53,6 +53,7 @@ CREATE  TABLE `annunci`.`prodotti` (
   `descrizione` VARCHAR(45) NULL ,
   `prezzo` INT NULL ,
   `data_acquisto` DATE NULL ,
+  'aquirente' INT NULL , 
   PRIMARY KEY (`codice_prodotto`) );
 
 
@@ -98,37 +99,12 @@ ALTER TABLE `annunci`.`utenti`
   ON UPDATE NO ACTION
 , ADD INDEX `fk_annunci_ruoli_idx` (`ruolo` ASC) ;
 
-
-Inserimento ruoli:
-
-INSERT INTO `annunci`.`ruoli` (`codice_ruolo`, `descrizione`) VALUES ('1', 'Amministratore');
-INSERT INTO `annunci`.`ruoli` (`codice_ruolo`, `descrizione`) VALUES ('2', 'Standard');
-INSERT INTO `annunci`.`ruoli` (`codice_ruolo`, `descrizione`) VALUES ('3', 'Ospite');
-
-Inserimento utenti:
-
-
-INSERT INTO `annunci`.`Utenti` (`codice_utente`, `username`, `password`, `nome`, `cognome`, `ruolo`, `stato`, `credito_residuo`) VALUES (11, 'Antonio', 'Scarpati', 'Antonio', 'Scarpati', '1', '', '800');
+ALTER TABLE `annunci`.`prodotti` 
+  ADD CONSTRAINT `fk_prodotti_utenti`
+  FOREIGN KEY (`acquirente` )
+  REFERENCES `annunci`.`ruoli` (`codice_utente` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_prodotti_utenti_idx` (`acquirente` ASC) ;
 
 
-inserimento categorie:
-
-INSERT INTO `annunci`.`categoria` (`codice_categoria`, `descrizione`) VALUES ('1', 'Elettrodomestici');
-INSERT INTO `annunci`.`categoria` (`codice_categoria`, `descrizione`) VALUES ('2', 'Libri');
-INSERT INTO `annunci`.`categoria` (`codice_categoria`, `descrizione`) VALUES ('3', 'Elettronica');
-INSERT INTO `annunci`.`categoria` (`codice_categoria`, `descrizione`) VALUES ('4', 'Telefonia');
-
-inserimento prodotti:
-
-INSERT INTO `annunci`.`prodotti` (`codice_prodotto`, `descrizione`, `prezzo`) VALUES ('1', 'Samsung Galaxy', '200');
-INSERT INTO `annunci`.`prodotti` (`codice_prodotto`, `descrizione`, `prezzo`) VALUES ('2', 'Il nome della rosa', '10');
-INSERT INTO `annunci`.`prodotti` (`codice_prodotto`, `descrizione`, `prezzo`) VALUES ('3', 'Portatile Asus', '100');
-INSERT INTO `annunci`.`prodotti` (`codice_prodotto`, `descrizione`, `prezzo`) VALUES ('4', 'Forno elettrico', '50');
-
-
-inserimento annunci:
-
-INSERT INTO `annunci`.`annunci` (`codice_annuncio`, `descrizione`, `codice_categoria`, `codice_prodotto`, `codice_utente`) VALUES ('1', 'Vendo telefono', '4', '1', '1');
-INSERT INTO `annunci`.`annunci` (`codice_annuncio`, `descrizione`, `codice_categoria`, `codice_prodotto`, `codice_utente`) VALUES ('2', 'Vendo forno', '1', '4', '3');
-INSERT INTO `annunci`.`annunci` (`codice_annuncio`, `descrizione`, `codice_categoria`, `codice_prodotto`, `codice_utente`) VALUES ('3', 'Vendo computer', '3', '3', '2');
-INSERT INTO `annunci`.`annunci` (`codice_annuncio`, `descrizione`, `codice_categoria`, `codice_prodotto`, `codice_utente`) VALUES ('4', 'Vendo libro', '2', '2', '5');

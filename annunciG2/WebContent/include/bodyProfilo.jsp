@@ -1,21 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+
 <center>
-<h4>QUESTO E' IL TUO PROFILO, LE TUE CREDENZIALI SONO:</h4><br>
-NOME:&nbsp;${utenteSession.nome}<br>
-COGNOME:&nbsp;${utenteSession.cognome}<br>
-USERNAME:&nbsp;${utenteSession.username}<br>
-PASSWORD:&nbsp;${utenteSession.password}<br>
-RUOLO:&nbsp;${utenteSession.ruolo.descrizione}<br>
-<br>
+<h4>QUESTO E' IL TUO PROFILO:</h4><br>
+
 <h4>SE VUOI MODIFICARE LE TUE CREDENZIALI, FALLO QUI:</h4><br>
 
 <html:form styleId="modificaUtentiForm" action="gestioneUtente.do">
@@ -32,5 +20,3 @@ RUOLO:&nbsp;${utenteSession.ruolo.descrizione}<br>
 
 
 </center>
-</body>
-</html>

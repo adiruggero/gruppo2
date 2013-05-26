@@ -19,12 +19,15 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
-import org.springframework.beans.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
+
 
 public class GestioneUtenteAction extends DispatchAction{
 
 	
 	private static Logger logger = Logger.getLogger(GestioneUtenteAction.class);
+	
+	
 	
 	public ActionForward logUtente(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response)
@@ -68,7 +71,7 @@ public class GestioneUtenteAction extends DispatchAction{
 		UtentiForm uf = (UtentiForm) form;
 		Utente u = new Utente();
 		
-		BeanUtils.copyProperties(uf,u);
+		BeanUtils.copyProperties(u, uf);
 		
 		List<Utente> utenti = ServiceFactory.getUtenteService().get(u);
 		
@@ -124,7 +127,7 @@ public class GestioneUtenteAction extends DispatchAction{
 		
 		Utente u = new Utente();
 		
-		BeanUtils.copyProperties(uf,u);
+		BeanUtils.copyProperties(u,uf);
 		
 		boolean inserito = ServiceFactory.getUtenteService().create(u);
 		
@@ -154,6 +157,12 @@ public class GestioneUtenteAction extends DispatchAction{
 			HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
 		
+		HttpSession session = request.getSession();
+		Utente u = (Utente) session.getAttribute("utenteSession");
+		UtentiForm uf = (UtentiForm) form;
+		
+		BeanUtils.copyProperties(uf, u);
+		 
 		String forwardPath ="visualizzaProfilo";
 		return mapping.findForward(forwardPath);			
 				
@@ -180,11 +189,18 @@ public class GestioneUtenteAction extends DispatchAction{
 		
 		UtentiForm af =(UtentiForm)form;
 		Utente u = new Utente();
-		
 		BeanUtils.copyProperties(u,af);
+		
+		HttpSession session = request.getSession();
+		Utente uSession = (Utente)session.getAttribute("utenteSession");
+		u.setCodiceUtente(uSession.getCodiceUtente());
 	
-		Utente ret = ServiceFactory.getUtenteService().getAndUpdate(u);
-		request.setAttribute("utente",ret);
+		ServiceFactory.getUtenteService().getAndUpdate(u);
+		
+		
+		Utente nuovaSession= ServiceFactory.getUtenteService().getId(u.getCodiceUtente());
+		
+		session.setAttribute("utenteSession",nuovaSession);
 		
 		String forwardPath="";
 		forwardPath="modificaEffettuata";

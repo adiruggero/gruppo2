@@ -153,8 +153,9 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		sb.append("SELECT descrizione,visite");
 		sb.append(" FROM annunci");
 		sb.append(" ORDER BY visite desc");
+		sb.append(" LIMIT 2");
 		
-		jdbcTemplate.setMaxRows(2);
+		
 		
 		List<Annuncio> listAnnunci = jdbcTemplate.query(sb.toString(),new VisiteRowMapper());
 		

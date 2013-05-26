@@ -42,8 +42,9 @@
 						
 							
 					
-						
-						<td><html:submit value="Buy!"></html:submit></td>
+						<c:if test="${annuncio.stato eq true}">						
+							<td><html:submit value="Buy!"></html:submit></td>
+						</c:if>
 		
 					</tr>
 			</table>

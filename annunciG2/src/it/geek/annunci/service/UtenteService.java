@@ -47,12 +47,12 @@ public class UtenteService implements UtenteServiceInterface{
 
 	public Utente getAndUpdate(Utente u){
 		
-		Utente ut = null;
+		
 	
-		boolean ret = utenteDao.update(ut);
+		boolean ret = utenteDao.update(u);
 		
 		
-		return ut;
+		return u;
 		
 		
 	}

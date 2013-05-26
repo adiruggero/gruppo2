@@ -75,9 +75,31 @@ public class GestioneAnnunciAction extends DispatchAction{
 		
 		request.setAttribute("annuncio",ret);
 		
+		List<Annuncio> bestList = ServiceFactory.getAnnuncioService().findView();
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("bestList",bestList);
+		
 		forwardPath="dettagli";
 		
 		return mapping.findForward(forwardPath);
+		
+	}
+	
+	public ActionForward paginaIniziale(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)throws Exception{
+		
+		
+		List<Annuncio> list = ServiceFactory.getAnnuncioService().findView();
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("bestList",list);
+		
+		String forwardPath="home";
+		
+		return mapping.findForward(forwardPath);
+		
 		
 	}
 	

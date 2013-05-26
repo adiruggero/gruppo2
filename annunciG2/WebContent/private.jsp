@@ -10,6 +10,13 @@
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
+	<!-- import for BOOTSTRAP CSS and JS (minimal) -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>	
+	<!-- end import -->
+	
+		
 </head>
 <base href="<%=basePath%>"/>
 <body>
