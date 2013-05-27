@@ -13,6 +13,7 @@ public class VisiteRowMapper implements RowMapper<Annuncio> {
 		
 		Annuncio a = new Annuncio();
 		
+		a.setCodiceAnnuncio(rs.getInt("codice_annuncio"));
 		a.setDescrizione(rs.getString("descrizione"));
 		a.setVisite(rs.getInt("visite"));
 		

@@ -150,7 +150,7 @@ public class AnnuncioDao implements AnnuncioDaoInterface{
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("SELECT descrizione,visite");
+		sb.append("SELECT codice_annuncio,descrizione,visite");
 		sb.append(" FROM annunci");
 		sb.append(" ORDER BY visite desc");
 		sb.append(" LIMIT 2");

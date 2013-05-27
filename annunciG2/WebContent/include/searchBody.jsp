@@ -6,11 +6,7 @@
 
 <center>
 
-		<html:form method="POST" action="gestioneAnnunci.do">
-		<html:hidden property="method" value="dettagli"/>
-		<html:hidden property="codiceAnnuncio" value=""/>
-		
-		<table border="2">
+		<html:form method="POST" action="gestioneAnnunci.do"
 		<tr>
 			<td>Data Inserimento</td>
 			<td>Descrizione</td>
@@ -32,7 +28,7 @@
 				<c:if test="${annunci.stato eq false }">
 					<td>Non Attivo</td>
 				</c:if>
-				<td><html:submit  value="Mostra" onclick="document.forms['annunciForm'].codiceAnnuncio.value='${annunci.codiceAnnuncio}';"></html:submit></td>
+				<td><html:submit styleClass="btn btn-success"  value="Mostra" onclick="document.forms['annunciForm'].codiceAnnuncio.value='${annunci.codiceAnnuncio}';"></html:submit></td>
 			</tr>		
 			</logic:iterate>
 		

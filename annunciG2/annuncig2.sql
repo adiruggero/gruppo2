@@ -1,7 +1,7 @@
 ﻿Script sql x Antonio
 
 
-Creazione schema:
+/*Creazione schema:*/
 
 CREATE SCHEMA `annunci` ;
 
@@ -11,13 +11,13 @@ CREATE  TABLE `annunci`.`utenti` (
   `username` VARCHAR(45) NULL ,
   `password` VARCHAR(45) NULL ,
   `nome` VARCHAR(45) NULL ,
- `cognome` VARCHAR(45) NULL ,0 `codice_ruolo` INT NULL ,
+ `cognome` VARCHAR(45) NULL , `codice_ruolo` INT NULL ,
   `stato` INT NULL DEFAULT 1 ,
   `credito_residuo` INT NULL ,
   PRIMARY KEY (`codice_utente`) );
 
 
-Creazione tabella ruoli:
+/*Creazione tabella ruoli:*/
 
 
 CREATE  TABLE `annunci`.`ruoli` (
@@ -25,7 +25,7 @@ CREATE  TABLE `annunci`.`ruoli` (
   `descrizione` VARCHAR(45) NULL , PRIMARY KEY (`codice_ruolo`) );
 
 
-Creazione tabella annunci:
+/*Creazione tabella annunci:*/
 
 CREATE  TABLE `annunci`.`annunci` (
   `codice_annuncio` INT NOT NULL AUTO_INCREMENT ,
@@ -38,7 +38,7 @@ CREATE  TABLE `annunci`.`annunci` (
   `codice_utente` INT NULL ,
   PRIMARY KEY (`codice_annuncio`) );
 
-Creazione tabella categoria:
+/*Creazione tabella categoria:*/
 
 CREATE  TABLE `annunci`.`categoria` (
   `codice_categoria` INT NOT NULL AUTO_INCREMENT,
@@ -46,19 +46,19 @@ CREATE  TABLE `annunci`.`categoria` (
   PRIMARY KEY (`codice_categoria`) );
 
 
-Creazione tabella prodotti:
+/*Creazione tabella prodotti:*/
 
 CREATE  TABLE `annunci`.`prodotti` (
   `codice_prodotto` INT NOT NULL AUTO_INCREMENT,
   `descrizione` VARCHAR(45) NULL ,
   `prezzo` INT NULL ,
   `data_acquisto` DATE NULL ,
-  'aquirente' INT NULL , 
+  `acquirente` INT NULL , 
   PRIMARY KEY (`codice_prodotto`) );
 
 
 
-Foreign key annunci:
+/*Foreign key annunci:*/
 
 ALTER TABLE `annunci`.`annunci` 
   ADD CONSTRAINT `fk_annunci_categoria`
@@ -89,15 +89,15 @@ ALTER TABLE `annunci`.`annunci`
 , ADD INDEX `fk_annunci_utente_idx` (`codice_utente` ASC) ;
 
 
-Foreign key utenti:
+/*Foreign key utenti:*/
 
 ALTER TABLE `annunci`.`utenti` 
   ADD CONSTRAINT `fk_annunci_ruoli`
-  FOREIGN KEY (`ruolo` )
+  FOREIGN KEY (`codice_ruolo` )
   REFERENCES `annunci`.`ruoli` (`codice_ruolo` )
   ON DELETE NO ACTION
   ON UPDATE NO ACTION
-, ADD INDEX `fk_annunci_ruoli_idx` (`ruolo` ASC) ;
+, ADD INDEX `fk_annunci_ruoli_idx` (`codice_ruolo` ASC) ;
 
 ALTER TABLE `annunci`.`prodotti` 
   ADD CONSTRAINT `fk_prodotti_utenti`

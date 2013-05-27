@@ -43,7 +43,7 @@
 							
 					
 						<c:if test="${annuncio.stato eq true}">						
-							<td><html:submit value="Buy!"></html:submit></td>
+							<td><html:submit styleClass="btn btn-success" value="Buy!"></html:submit></td>
 						</c:if>
 		
 					</tr>
