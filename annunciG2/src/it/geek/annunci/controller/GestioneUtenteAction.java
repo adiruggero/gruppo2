@@ -148,7 +148,13 @@ public class GestioneUtenteAction extends DispatchAction{
 			HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
 		
-		String forwardPath ="visualizzaAnnunci";
+		String forwardPath ="modificaAnnunci";
+		Annuncio a = new Annuncio();
+		
+		List<Annuncio> list = ServiceFactory.getAnnuncioService().getWhere(a);
+		
+		request.setAttribute("listAnnunci",list);
+		
 		return mapping.findForward(forwardPath);			
 				
 				
