@@ -11,7 +11,7 @@
 		<br>
 		
 		<c:if test="${utenteSession.ruolo.descrizione eq 'Amministratore'}">
-			GESTIONE UTENTI - clicca <a href="gestioneUtente.do?method=registrazione">qui</a><br>
+			GESTIONE UTENTI - clicca <a href="gestioneUtente.do?method=visualizzaUtenti">qui</a><br>
 		
 		</c:if>
 		<table>		

@@ -146,5 +146,16 @@ public class UtenteDao implements UtenteDaoInterface {
 		}
 		
 	}
-	
+	public List<Utente> findAll() {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("SELECT u.codice_utente,u.username,u.password,u.nome,u.cognome,r.codice_ruolo,u.stato,u.credito_residuo,r.descrizione");
+		sb.append(" FROM utenti u, ruoli r");
+		sb.append(" WHERE u.codice_ruolo=r.codice_ruolo");
+		sb.append(" ORDER BY nome ASC");
+		
+		
+		return (List<Utente>)jdbcTemplate.query(sb.toString(), new UtenteRowMapper());
+	}
 }

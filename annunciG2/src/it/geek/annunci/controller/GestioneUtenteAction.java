@@ -9,6 +9,7 @@ import it.geek.annunci.form.UtentiForm;
 import it.geek.annunci.model.Annuncio;
 import it.geek.annunci.model.Prodotto;
 import it.geek.annunci.model.Utente;
+import it.geek.annunci.service.UtenteServiceInterface;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -209,4 +210,24 @@ public class GestioneUtenteAction extends DispatchAction{
 		
 		
 	}
+	
+	public ActionForward visualizzaUtenti(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
+		UtentiForm uf = (UtentiForm)form;
+		Utente u = new Utente();
+		BeanUtils.copyProperties(u,uf);
+		
+		UtenteServiceInterface usi = ServiceFactory. getUtenteService();
+		List<Utente> lista = usi.getAll();
+		request.setAttribute("listaUtenti", lista);
+		
+		String forwardPath ="visualizzaUtenti";
+		return mapping.findForward(forwardPath);	
+	}
+	
+	
 }
+
+
+

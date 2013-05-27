@@ -57,4 +57,17 @@ public class UtenteService implements UtenteServiceInterface{
 		
 	}
 	
+	public List<Utente> getAll(){
+		
+		List<Utente> ret = null;
+		try {
+			ret = utenteDao.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+	}
+		return ret;
+		
+	}
+	
 }
