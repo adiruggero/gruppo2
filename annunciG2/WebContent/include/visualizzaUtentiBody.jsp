@@ -26,6 +26,7 @@
 					<td><strong><center>Cognome</center></strong></td>
 					<td><strong><center>Username</center></strong></td>
 					<td><strong><center>Password</center></strong></td>
+					
 				</tr>
 				
 				<c:forEach var="info" items="${listaUtenti}">
@@ -34,6 +35,7 @@
 						<td><center>${info.cognome}</center></td>
 						<td><center>${info.username}</center></td>
 						<td><center>${info.password}</center></td>
+						<td><a href="gestioneUtente.do?method=modifica">modifica</a></td>
 					</tr>
 				</c:forEach>
 				

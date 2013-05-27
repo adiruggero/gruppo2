@@ -54,6 +54,7 @@
 				<forward name="home" path="/home.jsp"/>
 				<forward name="modificaEffettuata" path="/success.jsp"/>
 				<forward name="visualizzaUtenti" path="/visualizzaUtenti.jsp"/>
+				<forward name="modifica" path="/modifica.jsp"/>
 		</action>
 		
 		

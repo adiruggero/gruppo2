@@ -231,9 +231,13 @@ public class GestioneUtenteAction extends DispatchAction{
 		String forwardPath ="visualizzaUtenti";
 		return mapping.findForward(forwardPath);	
 	}
-	
-	
+	public ActionForward modifica(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
+
+	String forwardPath ="modifica";
+	return mapping.findForward(forwardPath);	
 }
 
-
+}
 
