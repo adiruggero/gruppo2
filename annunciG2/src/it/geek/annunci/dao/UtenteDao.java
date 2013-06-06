@@ -158,4 +158,13 @@ public class UtenteDao implements UtenteDaoInterface {
 		
 		return (List<Utente>)jdbcTemplate.query(sb.toString(), new UtenteRowMapper());
 	}
+	
+	public void delete (int id){
+		
+		Utente u = new Utente();
+		String sql = "delete from utenti where codice_utente =?";
+		jdbcTemplate.update(sql, new Object[] {u.getCodiceUtente()});
+		
+		
+	}
 }

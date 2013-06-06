@@ -70,4 +70,11 @@ public class UtenteService implements UtenteServiceInterface{
 		
 	}
 	
+	public void elimina (int id){
+		
+		Utente u = null;		
+		utenteDao.delete(u.getCodiceUtente());
+			
+	}
+	
 }

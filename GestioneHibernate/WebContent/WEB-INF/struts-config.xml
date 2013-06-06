@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+							   "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+	
+		<form-bean name="personaForm"
+				   type="it.geek.gh.form.PersonaForm" />
+		
+		<form-bean name="utenteForm"		   
+				   type="it.geek.gh.form.UtenteForm"/>
+				   
+	</form-beans>
+
+	<global-exceptions></global-exceptions>
+	
+	<global-forwards></global-forwards>
+
+	<action-mappings>
+			
+	
+	    <action path="/persona"
+				name="personaForm"
+				scope="request"
+				type="it.geek.gh.controller.GestionePersonaAction"
+				parameter="method">
+				
+				<forward name="entra" path="/welcome.jsp"/>
+				<forward name="crea" path="/createPersona.jsp"/>
+				<forward name="modifica" path="/editPersona.jsp"/>
+				<forward name="ricerca"	path="/searchPersona.jsp"/>		
+		</action>
+		
+		<action path="/utente"
+				name="utenteForm"
+				scope="request"
+				type="it.geek.gh.controller.GestioneUtenteAction"
+				parameter="method">
+				
+				<forward name="visualizza" path="/visualizzaUtenti.jsp"/>
+				<forward name="visualizzaDettagli" path="/visualizzaDettagli.jsp"/>
+				<forward name="modificaUtente" path="/editUtente.jsp"/>
+				<forward name="aggiungiUtente" path="/createUtente.jsp"/>
+				<forward name="aggiungiLibro" path="/createLibro.jsp"/>
+				</action>
+	    
+		
+	</action-mappings>
+
+	<message-resources parameter="ApplicationResources"></message-resources>
+
+</struts-config>
